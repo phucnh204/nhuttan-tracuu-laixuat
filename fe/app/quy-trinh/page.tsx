@@ -102,7 +102,7 @@ function QuyTrinh() {
           </div>
 
           {/* Banner dưới */}
-          <div className="mt-12 bg-white rounded-2xl shadow-lg overflow-hidden">
+          {/* <div className="mt-12 bg-white rounded-2xl shadow-lg overflow-hidden">
             <div className="bg-gradient-to-r from-blue-600 to-blue-700 p-8 text-white text-center">
               <h3 className="text-2xl font-bold mb-2">
                 Quy trình cầm đồ chuyên nghiệp
@@ -119,7 +119,7 @@ function QuyTrinh() {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
   )

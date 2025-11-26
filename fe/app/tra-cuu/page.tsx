@@ -113,7 +113,7 @@ export default function TraCuu() {
         </div>
 
         {/* Support Section */}
-        <div className="mt-8 bg-yellow-50 border border-yellow-200 rounded-xl p-6 shadow-sm">
+        {/* <div className="mt-8 bg-yellow-50 border border-yellow-200 rounded-xl p-6 shadow-sm">
           <div className="flex gap-3">
             <AlertCircle className="w-6 h-6 text-yellow-600 flex-shrink-0" />
             <div>
@@ -124,18 +124,18 @@ export default function TraCuu() {
               <div className="space-y-1 flex justify-around text-sm text-gray-600">
                 <p className="flex items-center gap-2">
                   <Phone className="w-4 h-4" /> Hotline:{" "}
-                  <span className="font-semibold text-blue-600">1900 xxxx</span>
+                  <span className="font-semibold text-blue-600">0919 6363 99</span>
                 </p>
                 <p className="flex items-center gap-2">
                   <ChartAreaIcon className="w-4 h-4" /> Zalo:{" "}
                   <span className="font-semibold text-blue-600">
-                    0123 456 789
+                    0919 6363 99
                   </span>
                 </p>
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Features */}
         <div className="max-w-6xl mx-auto px-6 py-16">

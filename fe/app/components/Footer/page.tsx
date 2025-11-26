@@ -13,13 +13,13 @@ function Footer() {
                 Hệ thống cầm đồ uy tín với hơn 18 năm kinh nghiệm. Chúng tôi cam kết mang đến dịch vụ tốt nhất với lãi suất cạnh tranh và quy trình nhanh chóng.
               </p>
               <div className="flex gap-3">
-                <a href="#" className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition">
+                <a href="https://www.facebook.com/camdouytincantho" className="w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center hover:bg-blue-700 transition">
                   <Facebook className="w-5 h-5" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center hover:bg-blue-600 transition">
+                <a href="https://zalo.me/0919636399" className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center hover:bg-blue-600 transition">
                   <MessageCircle className="w-5 h-5" />
                 </a>
-                <a href="#" className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center hover:bg-green-700 transition">
+                <a href="0919636399" className="w-10 h-10 bg-green-600 rounded-full flex items-center justify-center hover:bg-green-700 transition">
                   <Phone className="w-5 h-5" />
                 </a>
               </div>
@@ -31,7 +31,7 @@ function Footer() {
               <ul className="space-y-3 text-gray-300">
                 <li className="flex items-center gap-2">
                   <Phone className="w-4 h-4 text-blue-400" />
-                  <span>Hotline: 1900 xxxx</span>
+                  <span>Hotline: 0919 63 63 99</span>
                 </li>
                 <li className="flex items-center gap-2">
                   <Globe className="w-4 h-4 text-blue-400" />
@@ -41,7 +41,7 @@ function Footer() {
                 </li>
                 <li className="flex items-center gap-2">
                   <MessageCircle className="w-4 h-4 text-blue-400" />
-                  <span>Zalo: 0123 456 789</span>
+                  <span>Zalo: 0919636399</span>
                 </li>
               </ul>
             </div>

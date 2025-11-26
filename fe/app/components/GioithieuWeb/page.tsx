@@ -13,7 +13,7 @@ import anh_phone from "../../../public/images/anh-website.png";
 
 export default function WebsiteIntroSection() {
   return (
-    <section className="py-32 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-900 text-white relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-900 text-white relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
         <div className="absolute top-20 left-10 w-96 h-96 bg-blue-400 rounded-full opacity-20 blur-3xl animate-pulse"></div>
@@ -41,13 +41,7 @@ export default function WebsiteIntroSection() {
         <div className="grid lg:grid-cols-2 items-center gap-16">
           {/* TEXT CONTENT */}
           <div className="text-center lg:text-left space-y-8">
-            {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20">
-              <Globe className="w-4 h-4 text-blue-200" />
-              <span className="text-sm font-semibold text-blue-100">
-                Website chính thức
-              </span>
-            </div>
+            
 
             {/* Heading */}
             <div>
@@ -120,29 +114,42 @@ export default function WebsiteIntroSection() {
           </div>
 
           {/* DEVICE MOCKUPS */}
-          <div className="relative flex flex-col md:flex-row justify-center items-center gap-8 md:gap-10">
-            {/* Laptop real image */}
-            <div className="relative w-full md:w-[480px] h-[270px] md:h-[300px] rounded-2xl overflow-hidden shadow-2xl border border-gray-200 transform hover:scale-105 transition-transform duration-500 z-10">
-              <Image
-                src={anh_web} // ảnh web desktop thật
-                alt="Website trên desktop"
-                className="w-full h-full object-contain" // object-contain giữ tỉ lệ ảnh
-              />
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-blue-500 opacity-10 blur-3xl -z-10"></div>
-            </div>
+          <div className="relative flex flex-col  justify-center items-center gap-14 mt-20">
+            {/* L A P T O P */}
+            <div className="relative w-full h-full md:w-[620px]">
+              {/* Khung laptop */}
+              <div className="relative bg-gray-900 rounded-t-2xl border-[4px] border-gray-400 shadow-lg pb-2">
+                {/* Webcam */}
+                <div className="flex justify-center pt-2 pb-1">
+                  <div className="w-2.5 h-2.5 bg-gray-700 rounded-full"></div>
+                </div>
 
-            {/* Mobile real image */}
-            <div className="relative w-[180px] md:w-[200px] h-[360px] md:h-[400px] rounded-3xl overflow-hidden shadow-2xl border border-gray-200 transform hover:scale-110 transition-transform duration-500 z-20">
-              <Image
-                src={anh_phone} // ảnh web mobile thật
-                alt="Website trên mobile"
-                className="w-full  object-contain" // giữ tỉ lệ ảnh
-              />
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-purple-500 opacity-10 blur-3xl -z-10"></div>
+                {/* Màn hình laptop thực */}
+                <div className="relative w-full  bg-black rounded-lg overflow-hidden shadow-inner">
+                  <Image
+                    src={anh_web} // ảnh web desktop
+                    alt="Laptop Display"
+                    className="w-full h-full object-cover px-1"
+                  />
+
+                  {/* Optional: reflection glass effect */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-white/10 via-transparent to-white/0 pointer-events-none"></div>
+                </div>
+              </div>
+
+              {/* Thân dưới laptop */}
+              <div className="h-3 bg-gradient-to-b from-gray-400 to-gray-900 rounded-b-2xl"></div>
+              <div className="h-0.5 bg-gradient-to-r from-transparent via-gray-600 to-transparent opacity-40"></div>
+            </div>
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20">
+              <Globe className="w-4 h-4 text-blue-200" />
+              <span className="text-sm font-semibold text-blue-100">
+                Website chính thức
+              </span>
             </div>
           </div>
+          
         </div>
       </div>
 

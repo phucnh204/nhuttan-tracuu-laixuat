@@ -9,9 +9,9 @@ export default function Header() {
 
   const navItems = [
     { name: "Trang chủ", href: "/", icon: Home },
-    { name: "Tra cứu", href: "/tra-cuu", icon: Search },
-    { name: "Quy trình", href: "/quy-trinh", icon: ClipboardList },
-    { name: "Địa chỉ", href: "/dia-chi", icon: MapPin },
+    { name: "Tra cứu lãi xuất", href: "/tra-cuu", icon: Search },
+    { name: "Quy trình làm việc", href: "/quy-trinh", icon: ClipboardList },
+    { name: "Địa chỉ cửa hàng", href: "/dia-chi", icon: MapPin },
   ];
 
   return (
@@ -57,7 +57,7 @@ export default function Header() {
 
           {/* CTA BUTTON - Desktop */}
           <a
-            href="/lookup"
+            href="/tra-cuu"
             className="hidden md:inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2.5 rounded-xl font-semibold hover:from-blue-700 hover:to-blue-800 hover:shadow-lg transition duration-300"
           >
             <Search className="w-4 h-4" />

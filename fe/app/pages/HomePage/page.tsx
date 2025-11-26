@@ -25,8 +25,9 @@ import WebsiteIntroSection from "@/app/components/GioithieuWeb/page";
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-gray-50">
+      
       {/* HERO SECTION */}
-      <section className="relative bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900 text-white py-24 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-gray-100 via-blue-700 to-blue-50 text-white py-24 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-300 rounded-full blur-3xl"></div>
@@ -51,6 +52,8 @@ export default function HomePage() {
           </a>
         </div>
       </section>
+
+      
 
       {/* GIỚI THIỆU DỊCH VỤ */}
       <section className="py-20 bg-white">
@@ -114,15 +117,13 @@ export default function HomePage() {
           </div>
         </div>
       </section>
- {/* GIỚI THIỆU WEBSITE */}
 
-     <WebsiteIntroSection/>
+      {/* GIỚI THIỆU WEBSITE */}
+
+      <WebsiteIntroSection />
+
       {/* VÌ SAO CHỌN NHỰT TÂN */}
       <ViSao />
-
-     
-
-    
 
       {/* FEATURES SECTION NÂNG CẤP */}
       <section className="py-24 bg-gray-50">
