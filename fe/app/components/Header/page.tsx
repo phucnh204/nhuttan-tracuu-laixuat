@@ -9,7 +9,7 @@ export default function Header() {
 
   const navItems = [
     { name: "Trang chủ", href: "/", icon: Home },
-    { name: "Tra cứu lãi xuất", href: "/tra-cuu", icon: Search },
+    { name: "Tra cứu lãi xuất", href: "https://camdonhuttan.com/kiem-tra-lai-suat/", icon: Search },
     { name: "Quy trình làm việc", href: "/quy-trinh", icon: ClipboardList },
     { name: "Địa chỉ cửa hàng", href: "/dia-chi", icon: MapPin },
   ];
@@ -57,7 +57,7 @@ export default function Header() {
 
           {/* CTA BUTTON - Desktop */}
           <a
-            href="/tra-cuu"
+            href="https://camdonhuttan.com/kiem-tra-lai-suat/"
             className="hidden md:inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2.5 rounded-xl font-semibold hover:from-blue-700 hover:to-blue-800 hover:shadow-lg transition duration-300"
           >
             <Search className="w-4 h-4" />

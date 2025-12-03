@@ -45,7 +45,7 @@ export default function HomePage() {
           </p>
 
           <a
-            href="/tra-cuu"
+            href="https://camdonhuttan.com/kiem-tra-lai-suat/"
             className="inline-block bg-white text-blue-700 font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-blue-50 hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
             Tra cứu ngay →
