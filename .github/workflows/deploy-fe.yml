@@ -9,29 +9,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout code
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ Setup Node.js
       - name: Setup Node 20
         uses: actions/setup-node@v3
         with:
           node-version: "20"
 
-      # 3️⃣ Install dependencies in /fe
       - name: Install dependencies
         run: |
           cd fe
           npm install
 
-      # 4️⃣ Build Next.js in /fe
       - name: Build Next.js
         run: |
           cd fe
           npm run build
 
-      # 5️⃣ Copy build to server via SCP
       - name: Copy build to server
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -42,7 +37,6 @@ jobs:
           source: "fe/.next,fe/package.json,fe/public"
           target: "/home/laixuat/fe/"
 
-      # 6️⃣ Restart PM2 on server via SSH
       - name: Restart FE with PM2
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -53,6 +47,7 @@ jobs:
           script: |
             cd /home/laixuat/fe
             npm install --omit=dev
+            rm -rf .next/cache
             pm2 delete fe-laixuat || true
-            pm2 start "npm start" --name fe-laixuat
+            PORT=4000 pm2 start "npm start" --name fe-laixuat
             pm2 save
