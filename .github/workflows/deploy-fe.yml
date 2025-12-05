@@ -32,27 +32,27 @@ jobs:
           npm run build
 
       # 5️⃣ Copy build to server via SCP
-- name: Copy build to server
-  uses: appleboy/scp-action@v0.1.7
-  with:
-    host: ${{ secrets.SERVER_HOST }}
-    username: ${{ secrets.SERVER_USER }}
-    key: ${{ secrets.SERVER_SSH_KEY }}
-    port: 24700                  # <- dùng đúng port
-    source: "fe/.next,fe/package.json,fe/public"
-    target: "/home/laixuat/fe/"
+      - name: Copy build to server
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: 24700
+          source: "fe/.next,fe/package.json,fe/public"
+          target: "/home/laixuat/fe/"
 
-# 6️⃣ Restart PM2 on server via SSH
-- name: Restart FE with PM2
-  uses: appleboy/ssh-action@v1.0.3
-  with:
-    host: ${{ secrets.SERVER_HOST }}
-    username: ${{ secrets.SERVER_USER }}
-    key: ${{ secrets.SERVER_SSH_KEY }}
-    port: 24700                  # <- dùng đúng port
-    script: |
-      cd /home/laixuat/fe
-      npm install --omit=dev
-      pm2 delete fe-laixuat || true
-      pm2 start "npm start" --name fe-laixuat
-      pm2 save
+      # 6️⃣ Restart PM2 on server via SSH
+      - name: Restart FE with PM2
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: 24700
+          script: |
+            cd /home/laixuat/fe
+            npm install --omit=dev
+            pm2 delete fe-laixuat || true
+            pm2 start "npm start" --name fe-laixuat
+            pm2 save
