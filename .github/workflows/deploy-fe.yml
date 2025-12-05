@@ -18,15 +18,14 @@ jobs:
           node-version: "20"
 
       - name: Install dependencies
-  run: |
-    cd fe
-    npm install
+        run: |
+          cd fe
+          npm install
 
-- name: Build Next.js
-  run: |
-    cd fe
-    npm run build
-
+      - name: Build Next.js
+        run: |
+          cd fe
+          npm run build
 
       - name: Copy build to server
         uses: appleboy/scp-action@v0.1.7
@@ -34,7 +33,7 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          source: ".next,package.json,public"
+          source: "fe/.next,fe/package.json,fe/public"
           target: "/home/laixuat/fe/"
 
       - name: Restart FE with PM2
