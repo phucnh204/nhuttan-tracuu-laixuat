@@ -35,7 +35,7 @@ export default function HomePage() {
 
         <div className=" mx-auto px-6 text-center relative z-10">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight drop-shadow-lg">
-            Hệ thống tra cứu thông tin lãi suất rrrr
+            Hệ thống tra cứu thông tin lãi suất rrrrtyty6t
             <br />
             <span className="text-blue-200">dành cho khách hàng Nhựt Tân</span>
           </h1>
