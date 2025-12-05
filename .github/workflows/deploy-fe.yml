@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout code
+      # 1️⃣ Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -27,14 +27,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: 24700
-          source: |
-            fe/package.json
-            fe/package-lock.json
-            fe/next.config.js
-            fe/public/
-            fe/app/
-            fe/components/
-            fe/pages/
+          source: "fe/package.json,fe/package-lock.json,fe/next.config.js,fe/public/*,fe/app/*,fe/components/*,fe/pages/*"
           target: "/home/laixuat/fe/"
 
       # 4️⃣ Build và restart trên server
