@@ -9,35 +9,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # 1️⃣ Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      # 2️⃣ Setup Node.js trên runner (cần để npm install dependencies)
       - name: Setup Node 20
         uses: actions/setup-node@v3
         with:
           node-version: "20"
 
-      - name: Install dependencies
-        run: |
-          cd fe
-          npm install
-
-      - name: Build Next.js
-        run: |
-          cd fe
-          npm run build
-
-      - name: Copy build to server
+      # 3️⃣ Copy source code sang server
+      - name: Copy source to server
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: 24700
-          source: "fe/.next,fe/package.json,fe/public"
+          source: |
+            fe/package.json
+            fe/package-lock.json
+            fe/next.config.js
+            fe/public
+            fe/app
+            fe/components
+            fe/pages
           target: "/home/laixuat/fe/"
 
-      - name: Restart FE with PM2
+      # 4️⃣ Build và restart trên server
+      - name: Build & restart FE on server
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -46,8 +47,9 @@ jobs:
           port: 24700
           script: |
             cd /home/laixuat/fe
+            rm -rf node_modules .next
             npm install --omit=dev
-            rm -rf .next/cache
+            npm run build
             pm2 delete fe-laixuat || true
             PORT=4000 pm2 start "npm start" --name fe-laixuat
             pm2 save
