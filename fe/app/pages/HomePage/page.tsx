@@ -35,7 +35,7 @@ export default function HomePage() {
 
         <div className=" mx-auto px-6 text-center relative z-10">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight drop-shadow-lg">
-            Hệ thống tra cứu thông tin lãi suất
+            Hệ thống tra cứu thông tin lãi suất tttttttttttttvđfrfrfrrgr
             <br />
             <span className="text-blue-200">dành cho khách hàng Nhựt Tân</span>
           </h1>
@@ -43,7 +43,7 @@ export default function HomePage() {
             An toàn – Minh bạch – Nhanh chóng. Dễ dàng kiểm tra tiền lãi theo
             kỳ, tình trạng thanh toán và lịch sử giao dịch.
           </p>
-tttttttttttttvđfrfrfrrgr
+
           <a
             href="https://camdonhuttan.com/kiem-tra-lai-suat/"
             className="inline-block bg-white text-blue-700 font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-blue-50 hover:shadow-xl hover:scale-105 transition-all duration-300"
