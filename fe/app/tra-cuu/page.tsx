@@ -6,8 +6,7 @@ import {
   FileText,
   Phone,
   Shield,
-  AlertCircle,
-  ChartAreaIcon,
+
 } from "lucide-react";
 
 export default function TraCuu() {
