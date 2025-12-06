@@ -10,35 +10,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup Node 20
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-          cache: 'npm'
-          cache-dependency-path: fe/package-lock.json
-
-      - name: Install and Build FE
-        run: |
-          cd fe
-          npm ci  # Dùng ci thay vì install cho CI/CD
-          npm run build
-
-      - name: Verify build
-        run: ls -la fe/.next
-
-      - name: Copy FE to server
+      # Copy source code (không build)
+      - name: Copy source to server
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: 24700
-          source: "fe"
-          target: "/home/laixuat/"
+          source: "fe/*"
+          target: "/home/laixuat/fe/"
+          strip_components: 1
           overwrite: true
-          rm: false
 
-      - name: Install deps & Restart PM2
+      # Build và restart trên server
+      - name: Build and Deploy
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -46,8 +32,21 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: 24700
           script: |
-            cd /home/laixuat/fe/fe
-            npm ci --omit=dev
+            set -e
+            cd /home/laixuat/fe
+            
+            echo "🔨 Building..."
+            rm -rf .next
+            npm ci
+            npm run build
+            
+            echo "🛑 Stopping PM2..."
+            pm2 stop fe-laixuat || true
             pm2 delete fe-laixuat || true
+            sleep 2
+            
+            echo "🚀 Starting..."
             PORT=4000 pm2 start "npm start" --name fe-laixuat
             pm2 save
+            
+            pm2 info fe-laixuat
