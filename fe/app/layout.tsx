@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "./components/Header/page";
 import Footer from "./components/Footer/page";
 import logo from "./../public/logo-1.png"; // favicon
+import PageLoading from "./components/PageLoading";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,10 +17,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Hệ thống tra cứu lãi xuất - Cầm đồ Nhựt Tân",
+  title: "Camdocantho.net - Cầm đồ Nhựt Tân",
   description:
-    "Tra cứu lãi xuất nhanh chóng và chính xác tại Cầm đồ Nhựt Tân, Cần Thơ.",
-  metadataBase: new URL("https://camdonhuttan.com"), 
+    "Camdocantho.net - Cầm đồ Nhựt Tân, Cần Thơ.",
+  metadataBase: new URL("https://camdonhuttan.com"),
   openGraph: {
     title: "Hệ thống tra cứu lãi xuất - Cầm đồ Nhựt Tân",
     description:
@@ -46,6 +47,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Header />
+        <PageLoading />
         {children}
         <Footer />
       </body>

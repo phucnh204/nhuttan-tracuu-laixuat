@@ -6,177 +6,271 @@ import {
   FileText,
   Phone,
   Shield,
-
+  ChevronRight,
+  CheckCircle,
+  BookOpen,
+  HelpCircle,
+  Clock,
+  Star,
 } from "lucide-react";
 
-export default function TraCuu() {
-  const [contractCode, setContractCode] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+export default function HuongDanTraCuu() {
+  const [activeStep, setActiveStep] = useState(0);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      alert("Chức năng tra cứu đang được phát triển!");
-    }, 1500);
-  };
+  const steps = [
+    {
+      title: "Bước 1: Chuẩn bị thông tin",
+      desc: "Chuẩn bị sẵn mã hợp đồng và số điện thoại đăng ký",
+      image:
+        "/images/buoc1.png",
+      details: [
+        "Tìm mã hợp đồng trên giấy tờ cầm đồ của bạn",
+        "Số điện thoại phải trùng với số đã đăng ký khi làm hợp đồng",
+        "Kiểm tra kỹ thông tin trước khi nhập",
+      ],
+    },
+    {
+      title: "Bước 2: Truy cập trang camdocantho.net",
+      desc: "Vào menu 'Tra Cứu Lãi Xuất' trên website camdocantho.net",
+      image:
+        "/images/buoc2.png",
+      details: [
+        "Click vào menu 'Tra Cứu Lãi Xuất' ở đầu trang",
+        "Hoặc truy cập trực tiếp qua đường link https://camdonhuttan.com/kiem-tra-lai-suat/",
+        "Giao diện tra cứu sẽ hiển thị form nhập liệu",
+      ],
+    },
+    {
+      title: "Bước 3: Nhập thông tin",
+      desc: "Điền chính xác mã hợp đồng và số điện thoại",
+      image:
+        "/images/buoc3.png",
+      details: [
+        "Nhập mã hợp đồng vào ô 'Mã hợp đồng'",
+        "Nhập số điện thoại đã đăng ký vào ô 'Số điện thoại'",
+        "Kiểm tra lại thông tin đã nhập có chính xác không",
+      ],
+    },
+    {
+      title: "Bước 4: Xem kết quả",
+      desc: "Hệ thống hiển thị thông tin lãi suất và lịch sử",
+      image:
+        "/images/buoc4.png",
+      details: [
+        "Thông tin lãi suất hiện tại được hiển thị chi tiết",
+        "Số tiền cần phải thanh toán và các giao dịch liên quan",
+        "Có thể tkiểm tra thời gian đến hẹn đóng lãi",
+      ],
+    },
+  ];
+
+  const faqs = [
+    {
+      q: "Tôi quên mã hợp đồng thì làm sao?",
+      a: "Bạn có thể liên hệ hotline 0919 6363 99 hoặc đến trực tiếp cửa hàng để được hỗ trợ tra cứu mã hợp đồng.",
+    },
+    {
+      q: "Số điện thoại không khớp thì sao?",
+      a: "Vui lòng sử dụng số điện thoại đã đăng ký khi làm hợp đồng. Nếu đã đổi số, hãy liên hệ với chúng tôi để cập nhật thông tin.",
+    },
+    {
+      q: "Thông tin có được bảo mật không?",
+      a: "Hoàn toàn! Mọi thông tin được mã hóa theo tiêu chuẩn quốc tế và chỉ bạn mới có thể truy cập.",
+    },
+    {
+      q: "Tôi có thể tra cứu bao nhiêu lần?",
+      a: "Bạn có thể tra cứu không giới hạn số lần, miễn phí 24/7.",
+    },
+  ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-800 text-white py-20">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h1 className="text-4xl flex gap-8 md:text-5xl font-extrabold mb-4">
-            
-            Tra cứu thông tin lãi suất
-            <Search className="w-12 h-12" />
+      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <div className="flex justify-center mb-4">
+            <BookOpen className="w-16 h-16" />
+          </div>
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
+            Hướng Dẫn Tra Cứu Lãi Xuất
           </h1>
-
           <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-            Nhập thông tin để kiểm tra lãi suất và lịch sử giao dịch của bạn
+            Làm theo 4 bước đơn giản để tra cứu thông tin lãi suất của bạn
           </p>
         </div>
       </div>
 
-      {/* Form */}
-      <div className="max-w-2xl mx-auto px-6 -mt-12">
-        <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-10 border border-gray-100">
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Contract Code */}
-            <div>
-              <label className="flex items-center gap-2 text-gray-700 font-semibold mb-2">
-                <FileText className="w-5 h-5 text-blue-600" />
-                Mã hợp đồng
-              </label>
-              <input
-                type="text"
-                value={contractCode}
-                onChange={(e) => setContractCode(e.target.value)}
-                placeholder="Nhập mã hợp đồng"
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition duration-300 outline-none"
-                required
-              />
-            </div>
-
-            {/* Phone Number */}
-            <div>
-              <label className="flex items-center gap-2 text-gray-700 font-semibold mb-2">
-                <Phone className="w-5 h-5 text-green-600" />
-                Số điện thoại
-              </label>
-              <input
-                type="tel"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-                placeholder="Nhập số điện thoại đăng ký"
-                className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:border-green-500 focus:ring-4 focus:ring-green-100 transition duration-300 outline-none"
-                required
-              />
-            </div>
-
-            {/* Security Notice */}
-            <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 flex gap-3 items-start">
-              <Shield className="w-6 h-6 text-blue-600 flex-shrink-0 mt-0.5" />
-              <div className="text-sm text-gray-700">
-                <p className="font-semibold text-blue-900 mb-1">
-                  Bảo mật thông tin
-                </p>
-                <p>
-                  Thông tin của bạn được mã hóa và bảo vệ theo tiêu chuẩn cao
-                  nhất.
-                </p>
-              </div>
-            </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={isLoading}
-              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white font-bold py-4 rounded-xl hover:from-blue-700 hover:to-blue-800 hover:shadow-lg transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+      {/* Quick Stats */}
+      <div className="max-w-6xl mx-auto px-6 -mt-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+          {[
+            {
+              icon: <Clock className="w-6 h-6" />,
+              label: "Chỉ 2 phút",
+              value: "Tra cứu nhanh",
+            },
+            {
+              icon: <Shield className="w-6 h-6" />,
+              label: "100% Bảo mật",
+              value: "An toàn tuyệt đối",
+            },
+            {
+              icon: <Star className="w-6 h-6" />,
+              label: "24/7",
+              value: "Hệ thống tra cứu luôn sẵn sàng",
+            },
+          ].map((stat, i) => (
+            <div
+              key={i}
+              className="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-all"
             >
-              {isLoading ? (
-                <>
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                  Đang xử lý...
-                </>
-              ) : (
-                <>
-                  <Search className="w-5 h-5" />
-                  Tra cứu ngay
-                </>
-              )}
-            </button>
-          </form>
-        </div>
-
-        {/* Support Section */}
-        {/* <div className="mt-8 bg-yellow-50 border border-yellow-200 rounded-xl p-6 shadow-sm">
-          <div className="flex gap-3">
-            <AlertCircle className="w-6 h-6 text-yellow-600 flex-shrink-0" />
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Cần hỗ trợ?</h3>
-              <p className="text-sm text-gray-700 mb-3">
-                Nếu gặp khó khăn trong việc tra cứu, vui lòng liên hệ:
-              </p>
-              <div className="space-y-1 flex justify-around text-sm text-gray-600">
-                <p className="flex items-center gap-2">
-                  <Phone className="w-4 h-4" /> Hotline:{" "}
-                  <span className="font-semibold text-blue-600">0919 6363 99</span>
-                </p>
-                <p className="flex items-center gap-2">
-                  <ChartAreaIcon className="w-4 h-4" /> Zalo:{" "}
-                  <span className="font-semibold text-blue-600">
-                    0919 6363 99
-                  </span>
-                </p>
+              <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 text-blue-600 rounded-full mb-3">
+                {stat.icon}
               </div>
+              <p className="text-gray-600 text-sm mb-1">{stat.label}</p>
+              <p className="text-xl font-bold text-gray-800">{stat.value}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto p-6">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">
+          Hướng Dẫn Chi Tiết
+        </h2>
+
+        <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2">
+          {steps.map((step, index) => (
+            <div
+              key={index}
+              className="bg-white rounded shadow-lg overflow-hidden transform transition-all duration-500 
+          hover:shadow-2xl hover:scale-[1.02] relative group"
+            >
+              <div className="grid md:grid-cols-2 gap-0">
+                {/* Image */}
+                <div className="relative h-64 md:h-auto overflow-hidden">
+                  <img
+                    src={step.image}
+                    alt={step.title}
+                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute top-4 left-4 bg-gradient-to-br from-blue-500 to-indigo-600 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold shadow-xl">
+                    {index + 1}
+                  </div>
+                </div>
+
+                {/* Content */}
+                <div className="p-8">
+                  <div className="flex items-start justify-between mb-4">
+                    <div>
+                      <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
+                        {step.title}
+                      </h3>
+                      <p className="text-gray-600">{step.desc}</p>
+                    </div>
+                    
+                  </div>
+
+                  {/* Chi tiết step (UI) */}
+                  <div className="mt-6 space-y-4">
+                    {step.details.map((detail, i) => (
+                      <div key={i} className="flex items-start gap-3">
+                        <div className="w-5 h-5 bg-green-500 rounded-full flex-shrink-0 mt-0.5"></div>
+                        <p className="text-gray-700 leading-relaxed">
+                          {detail}
+                        </p>
+                      </div>
+                    ))}
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Video Tutorial Section */}
+      <div className="max-w-6xl hidden mx-auto px-6 py-12">
+        <div className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl p-12 text-white text-center">
+          <div className="flex justify-center mb-6">
+            <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
+              <Search className="w-10 h-10" />
             </div>
           </div>
-        </div> */}
-
-        {/* Features */}
-        <div className="max-w-6xl mx-auto px-6 py-16">
-          <div className="grid md:grid-cols-3 gap-6">
-            {[
-              {
-                icon: <Search className="w-6 h-6" />,
-                title: "Tra cứu nhanh",
-                desc: "Kết quả hiển thị ngay lập tức",
-                bg: "bg-blue-100 text-blue-600",
-              },
-              {
-                icon: <FileText className="w-6 h-6" />,
-                title: "Thông tin chính xác",
-                desc: "Dữ liệu đồng bộ trực tiếp",
-                bg: "bg-green-100 text-green-600",
-              },
-              {
-                icon: <Shield className="w-6 h-6" />,
-                title: "Bảo mật tuyệt đối",
-                desc: "Mã hóa theo tiêu chuẩn quốc tế",
-                bg: "bg-purple-100 text-purple-600",
-              },
-            ].map((feature, i) => (
-              <div
-                key={i}
-                className="text-center p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition duration-300"
-              >
-                <div
-                  className={`w-14 h-14 ${feature.bg} rounded-full flex items-center justify-center mx-auto mb-4`}
-                >
-                  {feature.icon}
+          <h2 className="text-3xl font-bold mb-4">Video Hướng Dẫn Chi Tiết</h2>
+          <p className="text-xl text-purple-100 mb-8 max-w-2xl mx-auto">
+            Xem video hướng dẫn trực quan để hiểu rõ hơn về quy trình tra cứu
+          </p>
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 max-w-3xl mx-auto">
+            <div className="aspect-video bg-gray-800 rounded-xl flex items-center justify-center">
+              <div className="text-center">
+                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <ChevronRight className="w-8 h-8" />
                 </div>
-                <h3 className="font-semibold text-gray-900 mb-2">
-                  {feature.title}
-                </h3>
-                <p className="text-sm text-gray-600">{feature.desc}</p>
+                <p className="text-white/80">
+                  Video hướng dẫn sẽ được cập nhật sớm
+                </p>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </div>
+
+      {/* FAQ Section */}
+      <div className="max-w-4xl mx-auto px-6 py-12">
+        <div className="text-center mb-12">
+          <HelpCircle className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+          <h2 className="text-3xl font-bold text-gray-800 mb-2">
+            Câu Hỏi Thường Gặp
+          </h2>
+          <p className="text-gray-600">Giải đáp những thắc mắc phổ biến</p>
+        </div>
+
+        <div className="space-y-4">
+          {faqs.map((faq, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all"
+            >
+              <h3 className="text-lg font-bold text-gray-800 mb-3 flex items-start gap-3">
+                <span className="text-blue-600 flex-shrink-0">
+                  Q{index + 1}.
+                </span>
+                {faq.q}
+              </h3>
+              <p className="text-gray-600 ml-8">{faq.a}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* HERO SECTION */}
+      <section className="relative bg-gradient-to-br from-gray-100 via-blue-700 to-blue-50 text-white py-24 overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-300 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className=" mx-auto px-6 text-center relative z-10">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight drop-shadow-lg">
+            Hệ thống tra cứu thông tin lãi suất
+            <br />
+            <span className="text-blue-200">dành cho khách hàng Nhựt Tân</span>
+          </h1>
+          <p className="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto mb-8">
+            An toàn – Minh bạch – Nhanh chóng. Dễ dàng kiểm tra tiền lãi theo
+            kỳ, tình trạng thanh toán và lịch sử giao dịch.
+          </p>
+
+          <a
+            href="https://camdonhuttan.com/kiem-tra-lai-suat/"
+            className="inline-block bg-white text-blue-700 font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-blue-50 hover:shadow-xl hover:scale-105 transition-all duration-300"
+          >
+            Tra cứu ngay →
+          </a>
+        </div>
+      </section>
     </div>
   );
 }

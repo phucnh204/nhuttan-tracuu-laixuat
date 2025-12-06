@@ -1,59 +1,170 @@
-import Footer from "@/app/components/Footer/page";
-// import Map from "@/app/components/Map/page";
-import anh_website from "@/public/images/anh-website.png";
 import ViSao from "@/app/components/ViSao/page";
-import anh_laptop from "@/public/images/anh-laptop.png";
-import QuyTrinh from "@/app/quy-trinh/page";
+
 import {
   Clock,
   Shield,
   TrendingUp,
   FileText,
-  MapPin,
-  Phone,
-  Globe,
-  Facebook,
-  MessageCircle,
-  CheckCircle,
   Search,
   ClipboardCheck,
   ShieldCheck,
+  Award,
+  PhoneCall,
 } from "lucide-react";
-import Image from "next/image";
+
 import WebsiteIntroSection from "@/app/components/GioithieuWeb/page";
+import Link from "next/link";
+import banner from "../../../public/images/banner.png";
+import anh_xe_may from "../../../public/images/anh-xe-may.png";
+import DiaChi from "@/app/dia-chi/page";
+const features = [
+  {
+    icon: <Clock className="w-8 h-8" />,
+    title: "Nhanh Chóng",
+    desc: "Thẩm định và giải ngân trong 5 phút",
+  },
+  {
+    icon: <Shield className="w-8 h-8" />,
+    title: "Uy Tín",
+    desc: "18+ năm kinh nghiệm, đảm bảo pháp lý",
+  },
+  {
+    icon: <TrendingUp className="w-8 h-8" />,
+    title: "Lãi Suất Thấp",
+    desc: "Chỉ từ 1%, lãi suất cạnh tranh nhất thị trường.",
+  },
+  {
+    icon: <Award className="w-8 h-8" />,
+    title: "Chuyên Nghiệp",
+    desc: "Đội ngũ chuyên viên giàu kinh nghiệm",
+  },
+];
+
+const services = [
+  {
+    name: "Cầm Xe",
+    desc: "Nhận cầm xe máy và ô tô với thủ tục nhanh chóng, minh bạch và lãi suất cạnh tranh.",
+    image: "/images/anh-xe-may.png",
+  },
+  {
+    name: "Cầm Điện Thoại/Ipad",
+    desc: "Hỗ trợ cầm các dòng smartphone và iPad cao cấp như iPhone, Samsung, bảo đảm giá trị và pháp lý rõ ràng.",
+    image: "/images/anh-dt.png",
+  },
+  {
+    name: "Cầm Laptop",
+    desc: "Cầm các loại laptop, từ MacBook đến gaming laptop và workstation, thủ tục nhanh, giá trị định rõ.",
+    image: "/images/anh-laptop1.png",
+  },
+  {
+    name: "Cầm Đồng Hồ",
+    desc: "Nhận cầm đồng hồ đắt giá, từ thương hiệu cao cấp đến đồng hồ sang trọng, đảm bảo an toàn tuyệt đối.",
+    image: "/images/anh-dh.png",
+  },
+];
 
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-gray-50">
-      
-      {/* HERO SECTION */}
-      <section className="relative bg-gradient-to-br from-gray-100 via-blue-700 to-blue-50 text-white py-24 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-300 rounded-full blur-3xl"></div>
+      <div className="relative w-full h-[450px] sm:h-[400px] md:h-[500px] lg:h-[550px] overflow-hidden">
+        {/* Background gradient + image */}
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-gradient-to-r from-cyan-900 to-blue-700"></div>
+          <img
+            src={banner.src}
+            alt="Cầm đồ Nhựt Tân"
+            className="w-full h-full object-cover object-center opacity-50"
+          />
         </div>
 
-        <div className=" mx-auto px-6 text-center relative z-10">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight drop-shadow-lg">
-            Hệ thống tra cứu thông tin lãi suất 
-            <br />
-            <span className="text-blue-200">dành cho khách hàng Nhựt Tân</span>
-          </h1>
-          <p className="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto mb-8">
-            An toàn – Minh bạch – Nhanh chóng. Dễ dàng kiểm tra tiền lãi theo
-            kỳ, tình trạng thanh toán và lịch sử giao dịch.
-          </p>
-
-          <a
-            href="https://camdonhuttan.com/kiem-tra-lai-suat/"
-            className="inline-block bg-white text-blue-700 font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-blue-50 hover:shadow-xl hover:scale-105 transition-all duration-300"
-          >
-            Tra cứu ngay →
-          </a>
+        {/* Content */}
+        <div className="relative z-10 container mx-auto px-4 h-full flex items-center">
+          <div className="max-w-3xl text-white">
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+              Cầm Đồ Nhựt Tân Cần Thơ
+            </h1>
+            <p className="text-xl md:text-2xl mb-8 text-cyan-100">
+              Giải pháp tài chính nhanh chóng, an toàn và uy tín hàng đầu tại
+              Cần Thơ
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <button className="flex gap-2 bg-white text-cyan-900 px-8 py-4 rounded-lg font-semibold hover:bg-cyan-50 transition-all shadow-lg">
+                <PhoneCall /> 0979 3939 55 - 0346 6363 99
+              </button>
+              <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-cyan-900 transition-all">
+                <Link href="https://nhuttanstore.com/">
+                  Sản phẩm của cửa hàng
+                </Link>
+              </button>
+            </div>
+          </div>
         </div>
-      </section>
 
-      
+        {/* Optional overlay for better contrast */}
+        <div className="absolute inset-0 bg-black opacity-20"></div>
+      </div>
+
+      {/* Features Section */}
+      <div className="container mx-auto px-4 -mt-20 relative z-20 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {features.map((feature, idx) => (
+            <div
+              key={idx}
+              className="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2"
+            >
+              <div className="text-cyan-600 mb-4">{feature.icon}</div>
+              <h3 className="text-xl font-bold mb-2 text-gray-800">
+                {feature.title}
+              </h3>
+              <p className="text-gray-600">{feature.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Services Section */}
+      <div className="bg-gradient-to-b from-white to-cyan-50 py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold mb-4 text-gray-800">
+              Dịch Vụ Của Chúng Tôi
+            </h2>
+            <p className="text-xl text-gray-600">
+              Chấp nhận đa dạng loại tài sản thế chấp
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {services.map((service, idx) => (
+              <div
+                key={idx}
+                className="group bg-white rounded overflow-hidden shadow-lg hover:shadow-2xl "
+              >
+                {/* Image */}
+                <div className="relative h-56 md:h-64 overflow-hidden rounded">
+                  <img
+                    src={service.image}
+                    alt={service.name}
+                    className="w-full h-full object-cover object-center "
+                  />
+                  {/* Optional overlay for text highlight */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+
+                {/* Content */}
+                <div className="p-6">
+                  <h3 className="text-2xl font-bold mb-3 text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                    {service.name}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {service.desc}
+                  </p>
+                </div>
+
+                
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
       {/* GIỚI THIỆU DỊCH VỤ */}
       <section className="py-20 bg-white">
@@ -182,6 +293,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <DiaChi/>
     </main>
   );
 }
