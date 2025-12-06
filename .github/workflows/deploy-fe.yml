@@ -1,5 +1,4 @@
 name: Deploy FE to Server
-
 on:
   push:
     branches: ["main"]
@@ -7,13 +6,10 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      # 1️⃣ Checkout code
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ Setup Node.js
       - name: Setup Node 20
         uses: actions/setup-node@v3
         with:
@@ -21,14 +17,15 @@ jobs:
           cache: 'npm'
           cache-dependency-path: fe/package-lock.json
 
-      # 3️⃣ Install dependencies & build FE locally
       - name: Install and Build FE
         run: |
           cd fe
-          npm install
+          npm ci  # Dùng ci thay vì install cho CI/CD
           npm run build
 
-      # 4️⃣ Copy build + source lên server
+      - name: Verify build
+        run: ls -la fe/.next
+
       - name: Copy FE to server
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -36,19 +33,12 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: 24700
-          source: |
-            fe/.next
-            fe/package.json
-            fe/package-lock.json
-            fe/public/
-            fe/next.config.js
-            fe/app/
-            fe/components/
-            fe/pages/
-          target: "/home/laixuat/fe/"
+          source: "fe"
+          target: "/home/laixuat/"
+          overwrite: true
+          rm: false
 
-      # 5️⃣ Install production deps & restart PM2 trên server
-      - name: Build & Restart FE with PM2
+      - name: Install deps & Restart PM2
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -56,11 +46,8 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: 24700
           script: |
-            cd /home/laixuat/fe
-            # Cài production dependencies
-            npm install --omit=dev
-            # Xóa process cũ
+            cd /home/laixuat/fe/fe
+            npm ci --omit=dev
             pm2 delete fe-laixuat || true
-            # Start FE
             PORT=4000 pm2 start "npm start" --name fe-laixuat
             pm2 save
