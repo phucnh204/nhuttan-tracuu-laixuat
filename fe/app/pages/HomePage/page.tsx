@@ -17,6 +17,8 @@ import Link from "next/link";
 import banner from "../../../public/images/banner.png";
 import anh_xe_may from "../../../public/images/anh-xe-may.png";
 import DiaChi from "@/app/dia-chi/page";
+import ScrollToTopButton from "@/app/components/ScrollToTopButton";
+import ChatBox from "@/app/components/ChatBox";
 const features = [
   {
     icon: <Clock className="w-8 h-8" />,
@@ -158,8 +160,6 @@ export default function HomePage() {
                     {service.desc}
                   </p>
                 </div>
-
-                
               </div>
             ))}
           </div>
@@ -294,7 +294,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      <DiaChi/>
+      <DiaChi />
+
+      <ChatBox />
+      <ScrollToTopButton />
     </main>
   );
 }

@@ -21,8 +21,7 @@ export default function HuongDanTraCuu() {
     {
       title: "Bước 1: Chuẩn bị thông tin",
       desc: "Chuẩn bị sẵn mã hợp đồng và số điện thoại đăng ký",
-      image:
-        "/images/buoc1.png",
+      image: "/images/buoc1.png",
       details: [
         "Tìm mã hợp đồng trên giấy tờ cầm đồ của bạn",
         "Số điện thoại phải trùng với số đã đăng ký khi làm hợp đồng",
@@ -32,19 +31,37 @@ export default function HuongDanTraCuu() {
     {
       title: "Bước 2: Truy cập trang camdocantho.net",
       desc: "Vào menu 'Tra Cứu Lãi Xuất' trên website camdocantho.net",
-      image:
-        "/images/buoc2.png",
+      image: "/images/buoc2.png",
       details: [
         "Click vào menu 'Tra Cứu Lãi Xuất' ở đầu trang",
-        "Hoặc truy cập trực tiếp qua đường link https://camdonhuttan.com/kiem-tra-lai-suat/",
-        "Giao diện tra cứu sẽ hiển thị form nhập liệu",
+        <div key="link1">
+          Hoặc truy cập trực tiếp qua đường link{" "}
+          <a
+            href="https://camdonhuttan.com/kiem-tra-lai-suat/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 underline hover:text-blue-800"
+          >
+            https://camdonhuttan.com/kiem-tra-lai-suat/
+          </a>
+        </div>,
+        <div key="link2">
+          Truy cập website chính thức:{" "}
+          <a
+            href="https://camdocantho.net"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 underline hover:text-blue-800"
+          >
+            camdocantho.net
+          </a>
+        </div>,
       ],
     },
     {
       title: "Bước 3: Nhập thông tin",
       desc: "Điền chính xác mã hợp đồng và số điện thoại",
-      image:
-        "/images/buoc3.png",
+      image: "/images/buoc3.png",
       details: [
         "Nhập mã hợp đồng vào ô 'Mã hợp đồng'",
         "Nhập số điện thoại đã đăng ký vào ô 'Số điện thoại'",
@@ -54,8 +71,7 @@ export default function HuongDanTraCuu() {
     {
       title: "Bước 4: Xem kết quả",
       desc: "Hệ thống hiển thị thông tin lãi suất và lịch sử",
-      image:
-        "/images/buoc4.png",
+      image: "/images/buoc4.png",
       details: [
         "Thông tin lãi suất hiện tại được hiển thị chi tiết",
         "Số tiền cần phải thanh toán và các giao dịch liên quan",
@@ -152,7 +168,7 @@ export default function HuongDanTraCuu() {
                   <img
                     src={step.image}
                     alt={step.title}
-                    className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-contain  "
                   />
                   <div className="absolute top-4 left-4 bg-gradient-to-br from-blue-500 to-indigo-600 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold shadow-xl">
                     {index + 1}
@@ -168,7 +184,6 @@ export default function HuongDanTraCuu() {
                       </h3>
                       <p className="text-gray-600">{step.desc}</p>
                     </div>
-                    
                   </div>
 
                   {/* Chi tiết step (UI) */}
@@ -176,12 +191,11 @@ export default function HuongDanTraCuu() {
                     {step.details.map((detail, i) => (
                       <div key={i} className="flex items-start gap-3">
                         <div className="w-5 h-5 bg-green-500 rounded-full flex-shrink-0 mt-0.5"></div>
-                        <p className="text-gray-700 leading-relaxed">
+                        <div className="text-gray-700 leading-relaxed">
                           {detail}
-                        </p>
+                        </div>
                       </div>
                     ))}
-                    
                   </div>
                 </div>
               </div>
