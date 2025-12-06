@@ -13,8 +13,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ Copy source code lên server (không copy .next)
-      - name: Copy source to server
+      # 2️⃣ Setup Node.js
+      - name: Setup Node 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      # 3️⃣ Install dependencies & build FE locally on runner
+      - name: Install dependencies and build FE
+        run: |
+          cd fe
+          npm install
+          npm run build
+
+      # 4️⃣ Copy build + source code lên server
+      - name: Copy build to server
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -22,17 +35,18 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: 24700
           source: |
+            fe/.next
             fe/package.json
             fe/package-lock.json
-            fe/next.config.js
             fe/public/
+            fe/next.config.js
             fe/app/
             fe/components/
             fe/pages/
           target: "/home/laixuat/fe/"
 
-      # 3️⃣ Build và restart trực tiếp trên server
-      - name: Build and restart FE with PM2
+      # 5️⃣ Install only production deps + restart PM2
+      - name: Install prod deps and restart PM2
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -41,13 +55,11 @@ jobs:
           port: 24700
           script: |
             cd /home/laixuat/fe
-            # Xóa node_modules và .next cũ
-            rm -rf node_modules .next
-            # Cài lại dependencies
+            # Xóa node_modules cũ và cài production dependencies
+            rm -rf node_modules
             npm install --omit=dev
-            # Build Next.js
-            npm run build
-            # Restart PM2
+            # Xóa process cũ
             pm2 delete fe-laixuat || true
+            # Start FE trên port 4000
             PORT=4000 pm2 start "npm start" --name fe-laixuat
             pm2 save
