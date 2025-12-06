@@ -18,16 +18,18 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20
+          cache: 'npm'
+          cache-dependency-path: fe/package-lock.json
 
-      # 3️⃣ Install dependencies & build FE locally on runner
-      - name: Install dependencies and build FE
+      # 3️⃣ Install dependencies & build FE locally
+      - name: Install and Build FE
         run: |
           cd fe
           npm install
           npm run build
 
-      # 4️⃣ Copy build + source code lên server
-      - name: Copy build to server
+      # 4️⃣ Copy build + source lên server
+      - name: Copy FE to server
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -45,8 +47,8 @@ jobs:
             fe/pages/
           target: "/home/laixuat/fe/"
 
-      # 5️⃣ Install only production deps + restart PM2
-      - name: Install prod deps and restart PM2
+      # 5️⃣ Install production deps & restart PM2 trên server
+      - name: Build & Restart FE with PM2
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -55,11 +57,10 @@ jobs:
           port: 24700
           script: |
             cd /home/laixuat/fe
-            # Xóa node_modules cũ và cài production dependencies
-            rm -rf node_modules
+            # Cài production dependencies
             npm install --omit=dev
             # Xóa process cũ
             pm2 delete fe-laixuat || true
-            # Start FE trên port 4000
+            # Start FE
             PORT=4000 pm2 start "npm start" --name fe-laixuat
             pm2 save
