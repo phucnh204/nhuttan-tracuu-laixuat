@@ -21,14 +21,14 @@ export const metadata: Metadata = {
   description: "Camdocantho.net - Cầm đồ Nhựt Tân, Cần Thơ.",
   metadataBase: new URL("https://camdocantho.net"),
   openGraph: {
-    title: "Hệ thống tra cứu lãi xuất - Cầm đồ Nhựt Tân",
+    title: "Camdocantho.net - Cầm đồ Nhựt Tân",
     description:
       "Tra cứu lãi xuất nhanh chóng và chính xác tại Cầm đồ Nhựt Tân, Cần Thơ.",
     images: ["https://camdocantho.net/logo-1.png"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Hệ thống tra cứu lãi xuất - Cầm đồ Nhựt Tân",
+    title: "Camdocantho.net - Cầm đồ Nhựt Tân",
     description:
       "Tra cứu lãi xuất nhanh chóng và chính xác tại Cầm đồ Nhựt Tân, Cần Thơ.",
     images: ["https://camdocantho.net/logo-1.png"],
