@@ -15,7 +15,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
-        node-version: '20'  # Đổi từ '18' sang '20'
+        node-version: '20'
 
     - name: Install dependencies
       working-directory: ./fe
@@ -30,28 +30,26 @@ jobs:
       run: |
         mkdir -p deploy-package
         cp -r .next public package.json yarn.lock next.config.ts app postcss.config.mjs tsconfig.json eslint.config.mjs deploy-package/
-        tar -czf ../deploy.tar.gz -C deploy-package .
+        cd deploy-package
+        tar -czf ../../deploy.tar.gz .
+        cd ../..
+        ls -lh deploy.tar.gz
+
+    - name: Setup SSH
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
 
     - name: Copy deployment package to server
-      uses: appleboy/scp-action@v0.1.7
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.SSH_KEY }}
-        port: ${{ secrets.PORT }}
-        source: "deploy.tar.gz"
-        target: "/tmp/"
-        overwrite: true
+      run: |
+        scp -P ${{ secrets.PORT }} deploy.tar.gz ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/tmp/
 
     - name: Deploy on server
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.SSH_KEY }}
-        port: ${{ secrets.PORT }}
-        script: |
-          # Backup thư mục cũ (nếu cần)
+      run: |
+        ssh -p ${{ secrets.PORT }} ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
+          # Backup thư mục cũ
           if [ -d "/home/laixuat/fe-backup" ]; then
             rm -rf /home/laixuat/fe-backup
           fi
@@ -78,4 +76,9 @@ jobs:
           # Xóa backup nếu deploy thành công
           rm -rf /home/laixuat/fe-backup
           
-          echo "Deploy completed successfully!"
+          echo "✅ Deploy completed successfully!"
+        EOF
+
+    - name: Cleanup
+      if: always()
+      run: rm -f ~/.ssh/id_rsa deploy.tar.gz
