@@ -7,24 +7,26 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
-      # 1. Checkout code
+      # 1️⃣ Checkout code
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2. Build project trên runner (GitHub)
+      # 2️⃣ Cài đặt dependencies trên GitHub runner
       - name: Install dependencies
         run: |
           cd fe
           npm ci
 
+      # 3️⃣ Build project
       - name: Build project
         run: |
           cd fe
           npm run build
 
-      # 3. Copy build + public + package.json lên server
-      - name: Copy build to server
+      # 4️⃣ Copy folder build (.next + public) và file package.json lên server
+      - name: Copy UI build to server
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -32,14 +34,13 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: 24700
           source: |
-            fe/.next
-            fe/public
+            fe/.next/**
+            fe/public/**
             fe/package.json
-            fe/package-lock.json
           target: "/home/laixuat/fe/"
           overwrite: true
 
-      # 4. Restart PM2 trên server
+      # 5️⃣ Restart PM2 trên server
       - name: Restart PM2
         uses: appleboy/ssh-action@v1.0.3
         with:
