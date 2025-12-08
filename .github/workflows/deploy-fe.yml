@@ -1,4 +1,4 @@
-name: Deploy FE to Server
+name: Deploy FE UI to Server
 
 on:
   push:
@@ -13,19 +13,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ Cài đặt dependencies trên GitHub runner
+      # 2️⃣ Install dependencies trên GitHub runner
       - name: Install dependencies
         run: |
           cd fe
           npm ci
 
-      # 3️⃣ Build project
+      # 3️⃣ Build project trên runner
       - name: Build project
         run: |
           cd fe
           npm run build
 
-      # 4️⃣ Copy folder build (.next + public) và file package.json lên server
+      # 4️⃣ Copy build folder và package.json lên server
       - name: Copy UI build to server
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -34,8 +34,8 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: 24700
           source: |
-            fe/.next/**
-            fe/public/**
+            fe/.next
+            fe/public
             fe/package.json
           target: "/home/laixuat/fe/"
           overwrite: true
