@@ -24,7 +24,7 @@ export const metadata = {
     description: "Camdocantho.net - Cầm đồ Nhựt Tân, Cần Thơ.",
     images: ["https://camdocantho.net/logo-removebg-small.png"],
   },
-  
+
   twitter: {
     card: "summary_large_image",
     title: "Camdocantho.net - Cầm đồ Nhựt Tân",
@@ -32,6 +32,7 @@ export const metadata = {
     images: ["https://camdocantho.net/logo-removebg-small.png"],
   },
 };
+
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
