@@ -1,64 +1,57 @@
-name: Deploy FE UI to Server
+name: Deploy to Server
 
 on:
   push:
-    branches: ["main"]
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
+    
     steps:
-      # 1️⃣ Checkout code
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      # 2️⃣ Install dependencies trên GitHub runner
-      - name: Install dependencies
-        run: |
-          cd fe
-          npm ci
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
 
-      # 3️⃣ Build project trên runner
-      - name: Build project
-        run: |
-          cd fe
-          npm run build
+    - name: Install dependencies
+      run: npm ci
 
-      # 4️⃣ Copy build folder và package.json lên server
-      - name: Copy UI build to server
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          port: 24700
-          source: |
-            fe/.next
-            fe/public
-            fe/package.json
-          target: "/home/laixuat/fe/"
-          overwrite: true
+    - name: Build project
+      run: npm run build
 
-      # 5️⃣ Restart PM2 trên server
-      - name: Restart PM2
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          port: 24700
-          script: |
-            set -e
-            cd /home/laixuat/fe
+    - name: List files (debug)
+      run: |
+        echo "Current directory:"
+        pwd
+        echo "Files in workspace:"
+        ls -la
 
-            echo "🛑 Stopping old PM2 process..."
-            pm2 stop fe-laixuat || true
-            pm2 delete fe-laixuat || true
-            sleep 2
+    - name: Copy files via SCP
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        source: ".next,public,package.json,package-lock.json,next.config.ts,app,postcss.config.mjs,tsconfig.json,eslint.config.mjs"
+        target: "/home/laixuat/fe/"
+        strip_components: 0
+        overwrite: true
 
-            echo "🚀 Starting new PM2 process..."
-            PORT=4000 pm2 start "npx serve -s .next -l 4000" --name fe-laixuat
-            pm2 save
-
-            echo "✅ Deployment finished."
+    - name: Restart application on server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        script: |
+          cd /home/laixuat/fe
+          npm install --production
+          pm2 restart nextjs-app || pm2 start npm --name "nextjs-app" -- start
