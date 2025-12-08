@@ -5,27 +5,25 @@ on:
     branches: ["main"]
 
 jobs:
-  build-and-deploy:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       # 1. Checkout code
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2. Setup Node
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: 20
-
-      # 3. Install dependencies & build FE on runner
-      - name: Install dependencies and build
-        working-directory: ./fe
+      # 2. Build project trên runner (GitHub)
+      - name: Install dependencies
         run: |
+          cd fe
           npm ci
+
+      - name: Build project
+        run: |
+          cd fe
           npm run build
 
-      # 4. Copy build + public + package.json lên server bằng SCP
+      # 3. Copy build + public + package.json lên server
       - name: Copy build to server
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -34,16 +32,15 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: 24700
           source: |
-            fe/.next/**
-            fe/public/**
+            fe/.next
+            fe/public
             fe/package.json
             fe/package-lock.json
           target: "/home/laixuat/fe/"
-          strip_components: 0
           overwrite: true
 
-      # 5. Restart PM2 trên server
-      - name: Restart PM2 process
+      # 4. Restart PM2 trên server
+      - name: Restart PM2
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -60,7 +57,7 @@ jobs:
             sleep 2
 
             echo "🚀 Starting new PM2 process..."
-            PORT=4000 pm2 start "npm start" --name fe-laixuat
+            PORT=4000 pm2 start "npx serve -s .next -l 4000" --name fe-laixuat
             pm2 save
 
-            pm2 info fe-laixuat
+            echo "✅ Deployment finished."
