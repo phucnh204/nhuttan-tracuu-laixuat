@@ -8,22 +8,24 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      # 1. Checkout code
+      # 1. Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2. Build project trên runner (GitHub)
-      - name: Install dependencies
-        run: |
-          cd fe
-          npm ci
+      # 2. Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 20
 
-      - name: Build project
+      # 3. Install dependencies & build
+      - name: Install dependencies & Build
         run: |
           cd fe
+          npm ci --legacy-peer-deps
           npm run build
 
-      # 3. Copy build + public + package.json lên server
+      # 4. Copy build + public + package.json lên server
       - name: Copy build to server
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -31,15 +33,11 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: 24700
-          source: |
-            fe/.next
-            fe/public
-            fe/package.json
-            fe/package-lock.json
+          source: "fe/.next/**,fe/public/**,fe/package.json,fe/package-lock.json"
           target: "/home/laixuat/fe/"
           overwrite: true
 
-      # 4. Restart PM2 trên server
+      # 5. Restart PM2 trên server
       - name: Restart PM2
         uses: appleboy/ssh-action@v1.0.3
         with:
