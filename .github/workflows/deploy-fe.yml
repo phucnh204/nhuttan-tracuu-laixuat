@@ -8,51 +8,48 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      # Checkout source code
+      # 1. Checkout code
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # Copy source code lên server
+      # 2. Copy source code FE lên server bằng SCP
       - name: Copy source to server
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          port: ${{ secrets.SERVER_PORT }}
+          port: 24700
           source: "fe/*"
           target: "/home/laixuat/fe/"
           strip_components: 1
           overwrite: true
 
-      # Build và restart trên server
+      # 3. Build và restart PM2 trên server
       - name: Build and Deploy
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
-          port: ${{ secrets.SERVER_PORT }}
-          script_stop: true
+          port: 24700
           script: |
-            set -ex
-
+            set -e
             cd /home/laixuat/fe
 
-            echo "🔨 Install dependencies..."
+            echo "🔨 Installing dependencies..."
             npm ci
 
-            echo "🛠 Build Next.js..."
+            echo "🔨 Building project..."
             npm run build
 
-            echo "🛑 Stop existing PM2 process..."
+            echo "🛑 Stopping old PM2 process..."
             pm2 stop fe-laixuat || true
             pm2 delete fe-laixuat || true
             sleep 2
 
-            echo "🚀 Start PM2 process..."
-            # Dùng chuẩn PM2 cho npm script
-            pm2 start npm --name fe-laixuat -- start --update-env
-
+            echo "🚀 Starting new PM2 process..."
+            PORT=4000 pm2 start "npm start" --name fe-laixuat
             pm2 save
-            pm2 info fe-laixuat
+
+            echo "✅ Deployment finished."
