@@ -1,7 +1,9 @@
-name: Build Frontend
+name: Check Build
 
 on:
   push:
+    branches: [ main ]
+  pull_request:
     branches: [ main ]
 
 jobs:
@@ -25,16 +27,5 @@ jobs:
       working-directory: ./fe
       run: npm run build
 
-    - name: Create build artifact
-      working-directory: ./fe
-      run: |
-        mkdir -p build-output
-        cp -r .next public package.json yarn.lock next.config.ts app postcss.config.mjs tsconfig.json eslint.config.mjs build-output/
-        tar -czf build.tar.gz -C build-output .
-
-    - name: Upload build artifact
-      uses: actions/upload-artifact@v3
-      with:
-        name: frontend-build
-        path: fe/build.tar.gz
-        retention-days: 7
+    - name: Build success
+      run: echo "✅ Build completed successfully!"
