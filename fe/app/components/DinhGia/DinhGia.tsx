@@ -101,7 +101,7 @@ export default function DinhGia() {
             >
               <Input
               size="large"
-                placeholder="Ví dụ: Nguyễn Văn An"
+                placeholder="Ví dụ: Nguyễn Văn Anh"
                 className="w-full rounded-xl border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 p-4 text-lg"
               />
             </Form.Item>
