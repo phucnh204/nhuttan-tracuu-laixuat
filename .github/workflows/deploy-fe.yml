@@ -5,14 +5,14 @@ on:
     branches: ["main"]
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       # 1. Checkout code
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2. Set up Node
+      # 2. Setup Node
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
@@ -25,7 +25,7 @@ jobs:
           npm ci
           npm run build
 
-      # 4. Copy build + public + package.json sang server
+      # 4. Copy build + public + package.json lên server bằng SCP
       - name: Copy build to server
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -34,8 +34,8 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: 24700
           source: |
-            fe/.next
-            fe/public
+            fe/.next/**
+            fe/public/**
             fe/package.json
             fe/package-lock.json
           target: "/home/laixuat/fe/"
@@ -53,11 +53,14 @@ jobs:
           script: |
             set -e
             cd /home/laixuat/fe
+
             echo "🛑 Stopping old PM2 process..."
             pm2 stop fe-laixuat || true
             pm2 delete fe-laixuat || true
             sleep 2
+
             echo "🚀 Starting new PM2 process..."
             PORT=4000 pm2 start "npm start" --name fe-laixuat
             pm2 save
+
             pm2 info fe-laixuat
