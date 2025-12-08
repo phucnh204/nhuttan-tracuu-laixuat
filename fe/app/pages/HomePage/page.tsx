@@ -19,6 +19,7 @@ import anh_xe_may from "../../../public/images/anh-xe-may.png";
 import DiaChi from "@/app/dia-chi/page";
 import ScrollToTopButton from "@/app/components/ScrollToTopButton";
 import ChatBox from "@/app/components/ChatBox";
+import DinhGia from "@/app/components/DinhGia/DinhGia";
 const features = [
   {
     icon: <Clock className="w-8 h-8" />,
@@ -75,31 +76,8 @@ export default function HomePage() {
           <img
             src={banner.src}
             alt="Cầm đồ Nhựt Tân"
-            className="w-full h-full object-cover object-center opacity-50"
+            className="w-full h-full object-cover object-center opacity-95"
           />
-        </div>
-
-        {/* Content */}
-        <div className="relative z-10 container mx-auto px-4 h-full flex items-center">
-          <div className="max-w-3xl text-white">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-              Cầm Đồ Nhựt Tân Cần Thơ
-            </h1>
-            <p className="text-xl md:text-2xl mb-8 text-cyan-100">
-              Giải pháp tài chính nhanh chóng, an toàn và uy tín hàng đầu tại
-              Cần Thơ
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <button className="flex gap-2 bg-white text-cyan-900 px-8 py-4 rounded-lg font-semibold hover:bg-cyan-50 transition-all shadow-lg">
-                <PhoneCall /> 0979 3939 55 - 0346 6363 99
-              </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-lg font-semibold hover:bg-white hover:text-cyan-900 transition-all">
-                <Link href="https://nhuttanstore.com/">
-                  Sản phẩm của cửa hàng
-                </Link>
-              </button>
-            </div>
-          </div>
         </div>
 
         {/* Optional overlay for better contrast */}
@@ -123,12 +101,16 @@ export default function HomePage() {
           ))}
         </div>
       </div>
+
+      <DinhGia />
+      
+
       {/* Services Section */}
-      <div className="bg-gradient-to-b from-white to-cyan-50 py-20">
+      <div className="bg-gradient-to-b from-cyan-50 to-white py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold mb-4 text-gray-800">
-              Dịch Vụ Của Chúng Tôi
+              Dịch Vụ Của Cửa hàng Nhựt Tân
             </h2>
             <p className="text-xl text-gray-600">
               Chấp nhận đa dạng loại tài sản thế chấp
@@ -165,70 +147,6 @@ export default function HomePage() {
           </div>
         </div>
       </div>
-
-      {/* GIỚI THIỆU DỊCH VỤ */}
-      <section className="py-20 bg-white">
-        <div className=" mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-              Trải nghiệm dịch vụ tốt nhất
-            </h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Với 20 năm kinh nghiệm, chúng tôi cam kết mang đến sự hài lòng tối
-              đa cho khách hàng
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center p-6 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 hover:shadow-lg transition duration-300">
-              <div className="w-16 h-16 bg-blue-600 text-white flex items-center justify-center rounded-full mx-auto mb-4">
-                <Shield className="w-8 h-8" />
-              </div>
-              <h3 className="font-semibold text-gray-900 mb-2">
-                An toàn & Bảo mật
-              </h3>
-              <p className="text-sm text-gray-600">
-                Thông tin cá nhân được bảo mật tuyệt đối
-              </p>
-            </div>
-
-            <div className="text-center p-6 rounded-xl bg-gradient-to-br from-green-50 to-green-100 hover:shadow-lg transition duration-300">
-              <div className="w-16 h-16 bg-green-600 text-white flex items-center justify-center rounded-full mx-auto mb-4">
-                <TrendingUp className="w-8 h-8" />
-              </div>
-              <h3 className="font-semibold text-gray-900 mb-2">Định giá cao</h3>
-              <p className="text-sm text-gray-600">
-                Minh bạch, chính xác và cạnh tranh nhất
-              </p>
-            </div>
-
-            <div className="text-center p-6 rounded-xl bg-gradient-to-br from-purple-50 to-purple-100 hover:shadow-lg transition duration-300">
-              <div className="w-16 h-16 bg-purple-600 text-white flex items-center justify-center rounded-full mx-auto mb-4">
-                <Clock className="w-8 h-8" />
-              </div>
-              <h3 className="font-semibold text-gray-900 mb-2">
-                Lãi suất tốt nhất
-              </h3>
-              <p className="text-sm text-gray-600">
-                Cạnh tranh nhất thị trường hiện nay
-              </p>
-            </div>
-
-            <div className="text-center p-6 rounded-xl bg-gradient-to-br from-orange-50 to-orange-100 hover:shadow-lg transition duration-300">
-              <div className="w-16 h-16 bg-orange-600 text-white flex items-center justify-center rounded-full mx-auto mb-4">
-                <FileText className="w-8 h-8" />
-              </div>
-              <h3 className="font-semibold text-gray-900 mb-2">
-                Hợp đồng rõ ràng
-              </h3>
-              <p className="text-sm text-gray-600">
-                Niêm phong, minh bạch, đầy đủ pháp lý
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* GIỚI THIỆU WEBSITE */}
 
       <WebsiteIntroSection />

@@ -1,21 +1,16 @@
 "use-client";
 
-import {
-  
-  Star,
-} from "lucide-react";
+import { Clock, FileText, Shield, Star, TrendingUp } from "lucide-react";
 
-import about5 from "@/public/images/about5.png"
-import about2 from "@/public/images/about2.png"
-import about3 from "@/public/images/about3.png"
-import about4 from "@/public/images/about4.png"
+import about5 from "@/public/images/about5.png";
+import about2 from "@/public/images/about6.jpg";
+import about3 from "@/public/images/about3.png";
+import about4 from "@/public/images/about4.png";
 import DiaChi from "../dia-chi/page";
 
 function GioiThieu() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-cyan-50 to-white">
-      
-
       {/* About Section */}
       <div className="container mx-auto px-4 mb-20">
         <div className="grid md:grid-cols-2 gap-12 items-center">
@@ -81,8 +76,73 @@ function GioiThieu() {
           </div>
         </div>
 
-        <DiaChi/>
+       
       </div>
+
+      {/* GIỚI THIỆU DỊCH VỤ */}
+      <section className="py-20 bg-white">
+        <div className=" mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+              Trải nghiệm dịch vụ tốt nhất
+            </h2>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Với 20 năm kinh nghiệm, chúng tôi cam kết mang đến sự hài lòng tối
+              đa cho khách hàng
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="text-center p-6 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100 hover:shadow-lg transition duration-300">
+              <div className="w-16 h-16 bg-blue-600 text-white flex items-center justify-center rounded-full mx-auto mb-4">
+                <Shield className="w-8 h-8" />
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">
+                An toàn & Bảo mật
+              </h3>
+              <p className="text-sm text-gray-600">
+                Thông tin cá nhân được bảo mật tuyệt đối
+              </p>
+            </div>
+
+            <div className="text-center p-6 rounded-xl bg-gradient-to-br from-green-50 to-green-100 hover:shadow-lg transition duration-300">
+              <div className="w-16 h-16 bg-green-600 text-white flex items-center justify-center rounded-full mx-auto mb-4">
+                <TrendingUp className="w-8 h-8" />
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">Định giá cao</h3>
+              <p className="text-sm text-gray-600">
+                Minh bạch, chính xác và cạnh tranh nhất
+              </p>
+            </div>
+
+            <div className="text-center p-6 rounded-xl bg-gradient-to-br from-purple-50 to-purple-100 hover:shadow-lg transition duration-300">
+              <div className="w-16 h-16 bg-purple-600 text-white flex items-center justify-center rounded-full mx-auto mb-4">
+                <Clock className="w-8 h-8" />
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">
+                Lãi suất tốt nhất
+              </h3>
+              <p className="text-sm text-gray-600">
+                Cạnh tranh nhất thị trường hiện nay
+              </p>
+            </div>
+
+            <div className="text-center p-6 rounded-xl bg-gradient-to-br from-orange-50 to-orange-100 hover:shadow-lg transition duration-300">
+              <div className="w-16 h-16 bg-orange-600 text-white flex items-center justify-center rounded-full mx-auto mb-4">
+                <FileText className="w-8 h-8" />
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">
+                Hợp đồng rõ ràng
+              </h3>
+              <p className="text-sm text-gray-600">
+                Niêm phong, minh bạch, đầy đủ pháp lý
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+       <DiaChi />
     </div>
   );
 }

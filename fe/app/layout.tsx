@@ -1,54 +1,35 @@
-import type { Metadata } from "next";
+"use client";
+
+import { useState, useEffect } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 import Header from "./components/Header/page";
 import Footer from "./components/Footer/page";
-import logo from "./../public/logo-1.png"; // favicon
 import PageLoading from "./components/PageLoading";
+import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const [loading, setLoading] = useState(true);
 
-export const metadata: Metadata = {
-  title: "Camdocantho.net - Cầm đồ Nhựt Tân",
-  description: "Camdocantho.net - Cầm đồ Nhựt Tân, Cần Thơ.",
-  metadataBase: new URL("https://camdocantho.net"),
-  openGraph: {
-    title: "Camdocantho.net - Cầm đồ Nhựt Tân",
-    description:
-      "Tra cứu lãi xuất nhanh chóng và chính xác tại Cầm đồ Nhựt Tân, Cần Thơ.",
-    images: ["https://camdocantho.net/logo-1.png"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Camdocantho.net - Cầm đồ Nhựt Tân",
-    description:
-      "Tra cứu lãi xuất nhanh chóng và chính xác tại Cầm đồ Nhựt Tân, Cần Thơ.",
-    images: ["https://camdocantho.net/logo-1.png"],
-  },
-};
+  // Giả lập thời gian load (hoặc bạn có thể dùng next/navigation events)
+  useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 400); 
+    return () => clearTimeout(timer);
+  }, []);
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
   return (
     <html lang="vi">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Header />
-        <PageLoading />
-        {children}
-        <Footer />
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        {loading && <PageLoading />}
+        {!loading && (
+          <>
+            <Header />
+            {children}
+            <Footer />
+          </>
+        )}
       </body>
     </html>
   );

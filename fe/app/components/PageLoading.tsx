@@ -1,25 +1,40 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { usePathname, useRouter, useSelectedLayoutSegments } from "next/navigation";
-import LoadingSpinner from "./LoadingSpinner";
+import { usePathname } from "next/navigation";
 import { useTransition } from "react";
 
 export default function PageLoading() {
-  const [isPending, startTransition] = useTransition();
   const pathname = usePathname();
+  const [isPending, startTransition] = useTransition();
   const [loading, setLoading] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    // Bật spinner ngay khi pathname thay đổi
-    setLoading(true);
+    // Start transition và bật loading
+    startTransition(() => {
+      setLoading(true);
+      setVisible(true);
+    });
 
-    // Tắt sau khi transition xong
-    const timer = setTimeout(() => setLoading(false), 300); 
+    // Ẩn sau 500ms + fade out mượt
+    const timer = setTimeout(() => {
+      setLoading(false);
+      setTimeout(() => setVisible(false), 300); // fade out 300ms
+    }, 500);
+
     return () => clearTimeout(timer);
   }, [pathname]);
 
-  if (!loading) return null;
+  if (!visible) return null;
 
-  return <LoadingSpinner />;
+  return (
+    <div
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-white/70 backdrop-blur-sm transition-opacity duration-300 ${
+        loading ? "opacity-100" : "opacity-0"
+      }`}
+    >
+      <div className="w-16 h-16 border-4 border-cyan-600 border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  );
 }
