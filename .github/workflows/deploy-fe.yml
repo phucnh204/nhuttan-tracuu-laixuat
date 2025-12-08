@@ -1,11 +1,11 @@
-name: Deploy to Server
+name: Build Frontend
 
 on:
   push:
     branches: [ main ]
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     
     steps:
@@ -25,60 +25,16 @@ jobs:
       working-directory: ./fe
       run: npm run build
 
-    - name: Create deployment package
+    - name: Create build artifact
       working-directory: ./fe
       run: |
-        mkdir -p deploy-package
-        cp -r .next public package.json yarn.lock next.config.ts app postcss.config.mjs tsconfig.json eslint.config.mjs deploy-package/
-        cd deploy-package
-        tar -czf ../../deploy.tar.gz .
-        cd ../..
-        ls -lh deploy.tar.gz
+        mkdir -p build-output
+        cp -r .next public package.json yarn.lock next.config.ts app postcss.config.mjs tsconfig.json eslint.config.mjs build-output/
+        tar -czf build.tar.gz -C build-output .
 
-    - name: Setup SSH
-      run: |
-        mkdir -p ~/.ssh
-        echo "${{ secrets.SSH_KEY }}" > ~/.ssh/id_rsa
-        chmod 600 ~/.ssh/id_rsa
-        ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts
-
-    - name: Copy deployment package to server
-      run: |
-        scp -P ${{ secrets.PORT }} deploy.tar.gz ${{ secrets.USERNAME }}@${{ secrets.HOST }}:/tmp/
-
-    - name: Deploy on server
-      run: |
-        ssh -p ${{ secrets.PORT }} ${{ secrets.USERNAME }}@${{ secrets.HOST }} << 'EOF'
-          # Backup thư mục cũ
-          if [ -d "/home/laixuat/fe-backup" ]; then
-            rm -rf /home/laixuat/fe-backup
-          fi
-          if [ -d "/home/laixuat/fe" ]; then
-            mv /home/laixuat/fe /home/laixuat/fe-backup
-          fi
-          
-          # Tạo thư mục mới
-          mkdir -p /home/laixuat/fe
-          
-          # Giải nén file deploy
-          tar -xzf /tmp/deploy.tar.gz -C /home/laixuat/fe
-          
-          # Xóa file tar
-          rm -f /tmp/deploy.tar.gz
-          
-          # Cài đặt dependencies production
-          cd /home/laixuat/fe
-          npm install --production
-          
-          # Restart PM2
-          pm2 restart nextjs-app || pm2 start npm --name "nextjs-app" -- start
-          
-          # Xóa backup nếu deploy thành công
-          rm -rf /home/laixuat/fe-backup
-          
-          echo "✅ Deploy completed successfully!"
-        EOF
-
-    - name: Cleanup
-      if: always()
-      run: rm -f ~/.ssh/id_rsa deploy.tar.gz
+    - name: Upload build artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: frontend-build
+        path: fe/build.tar.gz
+        retention-days: 7
