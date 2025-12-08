@@ -1,64 +1,31 @@
-name: Deploy FE to Server
+name: Check Build
 
 on:
   push:
-    branches: ["main"]
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-
+    
     steps:
-      # 1️⃣ Checkout code
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      # 2️⃣ Cài đặt dependencies trên GitHub runner
-      - name: Install dependencies
-        run: |
-          cd fe
-          npm ci
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
 
-      # 3️⃣ Build project
-      - name: Build project
-        run: |
-          cd fe
-          npm run build
+    - name: Install dependencies
+      working-directory: ./fe
+      run: npm install
 
-      # 4️⃣ Copy folder build (.next + public) và file package.json lên server
-      - name: Copy UI build to server
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          port: 24700
-          source: |
-            fe/.next/**
-            fe/public/**
-            fe/package.json
-          target: "/home/laixuat/fe/"
-          overwrite: true
+    - name: Build project
+      working-directory: ./fe
+      run: npm run build
 
-      # 5️⃣ Restart PM2 trên server
-      - name: Restart PM2
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          port: 24700
-          script: |
-            set -e
-            cd /home/laixuat/fe
-
-            echo "🛑 Stopping old PM2 process..."
-            pm2 stop fe-laixuat || true
-            pm2 delete fe-laixuat || true
-            sleep 2
-
-            echo "🚀 Starting new PM2 process..."
-            PORT=4000 pm2 start "npx serve -s .next -l 4000" --name fe-laixuat
-            pm2 save
-
-            echo "✅ Deployment finished."
+    - name: Build success
+      run: echo "✅ Build completed successfully!"
