@@ -41,8 +41,6 @@ export default function WebsiteIntroSection() {
         <div className="grid lg:grid-cols-2 items-center gap-16">
           {/* TEXT CONTENT */}
           <div className="text-center lg:text-left space-y-8">
-            
-
             {/* Heading */}
             <div>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight">
@@ -80,7 +78,7 @@ export default function WebsiteIntroSection() {
             </div>
 
             {/* Features List */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6">
+            <div className="hidden lg:grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6">
               <div className="flex items-center gap-3 bg-white/10 backdrop-blur-md rounded-xl px-4 py-3 border border-white/20">
                 <div className="w-10 h-10 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-lg flex items-center justify-center flex-shrink-0">
                   <Star className="w-5 h-5 text-white" />
@@ -114,7 +112,7 @@ export default function WebsiteIntroSection() {
           </div>
 
           {/* DEVICE MOCKUPS */}
-          <div className="relative flex flex-col  justify-center items-center gap-14 mt-20">
+          <div className="relative flex flex-col  justify-center items-center gap-14 lg:mt-20">
             {/* L A P T O P */}
             <div className="relative w-full h-full md:w-[620px]">
               {/* Khung laptop */}
@@ -142,14 +140,20 @@ export default function WebsiteIntroSection() {
               <div className="h-0.5 bg-gradient-to-r from-transparent via-gray-600 to-transparent opacity-40"></div>
             </div>
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20">
-              <Globe className="w-4 h-4 text-blue-200" />
-              <span className="text-sm font-semibold text-blue-100">
-                Website chính thức
-              </span>
+            <div className="cursor-pointer inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20">
+              <a
+                href="https://nhuttanstore.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center justify-center gap-3 "
+              >
+                <Globe className="w-4 h-4 text-blue-200" />
+                <span className="text-sm font-semibold text-blue-100">
+                  Website chính thức
+                </span>
+              </a>
             </div>
           </div>
-          
         </div>
       </div>
 
