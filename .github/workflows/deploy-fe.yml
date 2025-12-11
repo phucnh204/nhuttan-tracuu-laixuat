@@ -19,20 +19,38 @@ jobs:
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
+          chmod 700 ~/.ssh
+          
+          # Write SSH key
           echo "${{ secrets.SERVER_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -p 24700 ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+          
+          # Debug key format
+          echo "=== Key first line ==="
+          head -n 1 ~/.ssh/id_rsa
+          echo "=== Key last line ==="
+          tail -n 1 ~/.ssh/id_rsa
+          echo "=== Key line count ==="
+          wc -l ~/.ssh/id_rsa
+          
+          # Add host
+          ssh-keyscan -p 24700 ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
       
-      - name: Test SSH Connection
+      - name: Test SSH (Verbose)
         run: |
-          ssh -p 24700 -i ~/.ssh/id_rsa \
+          echo "Testing connection to ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:24700"
+          ssh -vvv -p 24700 -i ~/.ssh/id_rsa \
             -o StrictHostKeyChecking=no \
+            -o UserKnownHostsFile=/dev/null \
+            -o IdentitiesOnly=yes \
             ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} \
-            "echo '✅ Connected'; whoami; pwd"
+            "echo '✅ SSH OK'; whoami; pwd"
       
-      - name: Deploy via rsync
+      - name: Deploy files
+        if: success()
         run: |
-          rsync -avz --delete \
+          echo "Deploying to /home/deploy/apps/nhuttan-tracuu-laixuat/fe/"
+          rsync -avzh --delete --progress \
             -e "ssh -p 24700 -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
             fe/.next/ \
             fe/public/ \
@@ -41,25 +59,19 @@ jobs:
             ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/deploy/apps/nhuttan-tracuu-laixuat/fe/
       
       - name: Restart PM2
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          port: 24700
-          script: |
+        if: success()
+        run: |
+          ssh -p 24700 -i ~/.ssh/id_rsa \
+            -o StrictHostKeyChecking=no \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'ENDSSH'
             cd /home/deploy/apps/nhuttan-tracuu-laixuat/fe/
-            
-            echo "🛑 Stopping old process..."
-            pm2 stop camdonhuttan || true
-            pm2 delete camdonhuttan || true
-            
-            echo "📦 Installing dependencies..."
+            echo "🛑 Stopping..."
+            pm2 stop camdonhuttan 2>/dev/null || true
+            pm2 delete camdonhuttan 2>/dev/null || true
+            echo "📦 Installing..."
             npm ci --production
-            
-            echo "🚀 Starting on port 3002..."
+            echo "🚀 Starting..."
             pm2 start npm --name "camdonhuttan" -- start -- -p 3002
             pm2 save
-            
-            echo "✅ Deployment completed!"
             pm2 list
+          ENDSSH
