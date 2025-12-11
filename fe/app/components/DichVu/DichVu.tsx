@@ -30,9 +30,10 @@ function DichVu() {
           <h2 className="text-4xl font-bold mb-4 text-gray-800">
             Dịch Vụ Của Cửa hàng Nhựt Tân
           </h2>
-          <p className="text-xl text-gray-600">
-            Chấp nhận đa dạng loại tài sản thế chấp
-          </p>
+          <span className="text-xl text-gray-600">
+            Chấp nhận đa dạng loại tài sản thế chấp bao gồm 
+            <p className="text-sm">Xe máy - Ô tô - Điện thoại - Ipad - Laptop - Máy ảnh ...vv có giá trị cao</p>
+          </span>
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
           {services.map((service, idx) => (

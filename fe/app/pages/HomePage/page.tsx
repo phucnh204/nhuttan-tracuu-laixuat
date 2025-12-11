@@ -10,8 +10,8 @@ import {
   ShieldCheck,
   Award,
   PhoneCall,
+  HelpCircle,
 } from "lucide-react";
-
 
 import WebsiteIntroSection from "@/app/components/GioithieuWeb/page";
 import Link from "next/link";
@@ -47,32 +47,31 @@ const features = [
   },
 ];
 const faqs = [
-    {
-      q: "Tôi quên mã hợp đồng thì làm sao?",
-      a: "Bạn có thể liên hệ hotline 0919 6363 99 hoặc đến trực tiếp cửa hàng để được hỗ trợ tra cứu mã hợp đồng.",
-    },
-    {
-      q: "Số điện thoại không khớp thì sao?",
-      a: "Vui lòng sử dụng số điện thoại đã đăng ký khi làm hợp đồng. Nếu đã đổi số, hãy liên hệ với chúng tôi để cập nhật thông tin.",
-    },
-    {
-      q: "Thông tin có được bảo mật không?",
-      a: "Hoàn toàn! Mọi thông tin được mã hóa theo tiêu chuẩn quốc tế và chỉ bạn mới có thể truy cập.",
-    },
-    {
-      q: "Tôi có thể tra cứu bao nhiêu lần?",
-      a: "Bạn có thể tra cứu không giới hạn số lần, miễn phí 24/7.",
-    },
-  ];
-
+  {
+    q: "Tôi quên mã hợp đồng thì làm sao?",
+    a: "Bạn có thể liên hệ hotline 0919 6363 99 hoặc đến trực tiếp cửa hàng để được hỗ trợ tra cứu mã hợp đồng.",
+  },
+  {
+    q: "Số điện thoại không khớp thì sao?",
+    a: "Vui lòng sử dụng số điện thoại đã đăng ký khi làm hợp đồng. Nếu đã đổi số, hãy liên hệ với chúng tôi để cập nhật thông tin.",
+  },
+  {
+    q: "Thông tin có được bảo mật không?",
+    a: "Hoàn toàn! Mọi thông tin được mã hóa theo tiêu chuẩn quốc tế và chỉ bạn mới có thể truy cập.",
+  },
+  {
+    q: "Tôi có thể tra cứu bao nhiêu lần?",
+    a: "Bạn có thể tra cứu không giới hạn số lần, miễn phí 24/7.",
+  },
+];
 
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-gray-50">
-      <Banner/>
+      <Banner />
 
       {/* Features Section */}
-      <div className="container mx-auto px-4 -mt-20 relative z-20 mb-20">
+      <div className="container mx-auto px-4 hidden lg:block -mt-20 relative z-20 mb-20">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feature, idx) => (
             <div
@@ -90,10 +89,9 @@ export default function HomePage() {
       </div>
 
       <DinhGia />
-      
 
       {/* Services Section */}
-      <DichVu/>
+      <DichVu />
       {/* GIỚI THIỆU WEBSITE */}
 
       <WebsiteIntroSection />
@@ -160,24 +158,29 @@ export default function HomePage() {
       </section>
 
       <DiaChi />
- <div className="space-y-4">
-          {faqs.map((faq, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all"
-            >
-              <h3 className="text-lg font-bold text-gray-800 mb-3 flex items-start gap-3">
-                <span className="text-blue-600 flex-shrink-0">
-                  Q{index + 1}.
-                </span>
-                {faq.q}
-              </h3>
-              <p className="text-gray-600 ml-8">{faq.a}</p>
-            </div>
-          ))}
-        </div>
+      <div className="text-center mb-12">
+        <HelpCircle className="w-12 h-12 text-blue-600 mx-auto mb-4" />
+        <h2 className="text-3xl font-bold text-gray-800 mb-2">
+          Câu Hỏi Thường Gặp
+        </h2>
+        <p className="text-gray-600">Giải đáp những thắc mắc phổ biến</p>
+      </div>
+      <div className="space-y-4 mx-10 grid grid-cols-1  lg:grid-cols-2 gap-x-4">
+        {faqs.map((faq, index) => (
+          <div
+            key={index}
+            className="bg-white rounded-2xl shadow-lg p-2 hover:shadow-xl transition-all"
+          >
+            <h3 className="text-lg font-bold text-gray-800 mb-3 flex items-start gap-3">
+              <span className="text-blue-600 flex-shrink-0">Q{index + 1}.</span>
+              {faq.q}
+            </h3>
+            <p className="text-gray-600 ml-8">{faq.a}</p>
+          </div>
+        ))}
+      </div>
       <ChatBox />
-      
+
       <ScrollToTopButton />
     </main>
   );

@@ -32,7 +32,8 @@ export default function Header() {
       href: "https://camdonhuttan.com/kiem-tra-lai-suat/",
       icon: Search,
     },
-    { name: "Quy trình làm việc", href: "/quy-trinh", icon: ClipboardList },
+    // { name: "Quy trình làm việc", href: "/quy-trinh", icon: ClipboardList },
+    { name: "Chương trình cuối năm", href: "/chuong-trinh", icon: ClipboardList },
     // { name: "Địa chỉ cửa hàng", href: "/dia-chi", icon: MapPin },
   ];
 

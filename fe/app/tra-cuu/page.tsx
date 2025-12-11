@@ -216,13 +216,7 @@ export default function HuongDanTraCuu() {
 
       {/* FAQ Section */}
       <div className="max-w-4xl mx-auto px-6 py-12">
-        <div className="text-center mb-12">
-          <HelpCircle className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-          <h2 className="text-3xl font-bold text-gray-800 mb-2">
-            Câu Hỏi Thường Gặp
-          </h2>
-          <p className="text-gray-600">Giải đáp những thắc mắc phổ biến</p>
-        </div>
+        
 
        
       </div>
