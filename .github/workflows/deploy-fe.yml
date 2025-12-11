@@ -2,42 +2,37 @@ name: Deploy FE UI to Server
 on:
   push:
     branches: ["main"]
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      # 1️⃣ Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
       
-      # 2️⃣ Cài dependencies và build FE
       - name: Install and build FE
         run: |
           cd fe
           npm ci
           npm run build
       
-      # 3️⃣ Debug - kiểm tra file đã build
-      - name: List build files
+      - name: Setup SSH
         run: |
-          ls -la fe/
-          ls -la fe/.next/ || echo "⚠️ .next folder not found"
-          ls -la fe/public/ || echo "⚠️ public folder not found"
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SERVER_SSH_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -p 24700 ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
       
-      # 4️⃣ Copy build lên server - SỬA Ở ĐÂY
-      - name: Copy build to server
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.SERVER_HOST }}
-          username: ${{ secrets.SERVER_USER }}
-          key: ${{ secrets.SERVER_SSH_KEY }}
-          port: 24700
-          source: "fe/.next,fe/public,fe/package.json,fe/package-lock.json"
-          target: "/home/deploy/apps/nhuttan-tracuu-laixuat/"
-          strip_components: 0
-          overwrite: true
+      - name: Deploy via rsync
+        run: |
+          rsync -avz --delete \
+            -e "ssh -p 24700 -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
+            fe/.next \
+            fe/public \
+            fe/package.json \
+            fe/package-lock.json \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/deploy/apps/nhuttan-tracuu-laixuat/fe/
       
-      # 5️⃣ Restart PM2
       - name: Restart PM2
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -47,16 +42,9 @@ jobs:
           port: 24700
           script: |
             cd /home/deploy/apps/nhuttan-tracuu-laixuat/fe/
-            echo "🛑 Stop old process"
             pm2 stop camdonhuttan || true
             pm2 delete camdonhuttan || true
-            
-            echo "📦 Install dependencies"
             npm ci --production
-            
-            echo "🚀 Start new process on port 3002"
             pm2 start npm --name "camdonhuttan" -- start -- -p 3002
             pm2 save
-            
-            echo "✅ Deployment completed"
             pm2 list
