@@ -1,34 +1,30 @@
 name: Deploy FE UI to Server
-
 on:
   push:
     branches: ["main"]
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       # 1️⃣ Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
-
+      
       # 2️⃣ Cài dependencies và build FE
       - name: Install and build FE
         run: |
           cd fe
           npm ci
           npm run build
-
-      # 3️⃣ Debug (tùy chọn, kiểm tra file đã build chưa)
+      
+      # 3️⃣ Debug - kiểm tra file đã build
       - name: List build files
         run: |
-          cd fe
-          ls -l
-          ls -l .next
-          ls -l public
-
-      # 4️⃣ Copy build lên server
+          ls -la fe/
+          ls -la fe/.next/ || echo "⚠️ .next folder not found"
+          ls -la fe/public/ || echo "⚠️ public folder not found"
+      
+      # 4️⃣ Copy build lên server - SỬA Ở ĐÂY
       - name: Copy build to server
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -36,14 +32,12 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: 24700
-          source: |
-            fe/.next
-            fe/public
-            fe/package.json
-          target: "/home/deploy/apps/nhuttan-tracuu-laixuat/fe/"
+          source: "fe/.next,fe/public,fe/package.json,fe/package-lock.json"
+          target: "/home/deploy/apps/nhuttan-tracuu-laixuat/"
+          strip_components: 0
           overwrite: true
-
-      # 5️⃣ Restart PM2 port 3002
+      
+      # 5️⃣ Restart PM2
       - name: Restart PM2
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -53,10 +47,16 @@ jobs:
           port: 24700
           script: |
             cd /home/deploy/apps/nhuttan-tracuu-laixuat/fe/
-            echo "🛑 Stop old process (if any)"
+            echo "🛑 Stop old process"
             pm2 stop camdonhuttan || true
             pm2 delete camdonhuttan || true
+            
+            echo "📦 Install dependencies"
+            npm ci --production
+            
             echo "🚀 Start new process on port 3002"
             pm2 start npm --name "camdonhuttan" -- start -- -p 3002
             pm2 save
+            
             echo "✅ Deployment completed"
+            pm2 list
