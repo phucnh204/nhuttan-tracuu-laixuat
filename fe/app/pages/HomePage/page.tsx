@@ -180,7 +180,7 @@ export default function HomePage() {
         ))}
       </div>
       <ChatBox />
-      
+    
 
       <ScrollToTopButton />
     </main>
