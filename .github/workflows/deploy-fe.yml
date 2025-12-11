@@ -20,58 +20,68 @@ jobs:
         run: |
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
-          
-          # Write SSH key
           echo "${{ secrets.SERVER_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          
-          # Debug key format
-          echo "=== Key first line ==="
-          head -n 1 ~/.ssh/id_rsa
-          echo "=== Key last line ==="
-          tail -n 1 ~/.ssh/id_rsa
-          echo "=== Key line count ==="
-          wc -l ~/.ssh/id_rsa
-          
-          # Add host
           ssh-keyscan -p 24700 ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
       
-      - name: Test SSH (Verbose)
-        run: |
-          echo "Testing connection to ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:24700"
-          ssh -vvv -p 24700 -i ~/.ssh/id_rsa \
-            -o StrictHostKeyChecking=no \
-            -o UserKnownHostsFile=/dev/null \
-            -o IdentitiesOnly=yes \
-            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} \
-            "echo '✅ SSH OK'; whoami; pwd"
-      
       - name: Deploy files
-        if: success()
         run: |
-          echo "Deploying to /home/deploy/apps/nhuttan-tracuu-laixuat/fe/"
-          rsync -avzh --delete --progress \
+          # Xóa .next cũ trên server trước
+          ssh -p 24700 -i ~/.ssh/id_rsa \
+            -o StrictHostKeyChecking=no \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} \
+            "rm -rf /home/deploy/apps/nhuttan-tracuu-laixuat/fe/.next"
+          
+          # Sync thư mục .next (CHÚ Ý: không có dấu / sau .next)
+          echo "📦 Deploying .next build..."
+          rsync -avzh \
             -e "ssh -p 24700 -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
-            fe/.next/ \
+            fe/.next \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/deploy/apps/nhuttan-tracuu-laixuat/fe/
+          
+          # Sync thư mục public
+          echo "📦 Deploying public assets..."
+          rsync -avzh --delete \
+            -e "ssh -p 24700 -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
             fe/public/ \
+            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/deploy/apps/nhuttan-tracuu-laixuat/fe/public/
+          
+          # Sync package files
+          echo "📦 Deploying package files..."
+          rsync -avzh \
+            -e "ssh -p 24700 -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
             fe/package.json \
             fe/package-lock.json \
             ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/deploy/apps/nhuttan-tracuu-laixuat/fe/
       
       - name: Restart PM2
-        if: success()
         run: |
           ssh -p 24700 -i ~/.ssh/id_rsa \
             -o StrictHostKeyChecking=no \
             ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'ENDSSH'
             cd /home/deploy/apps/nhuttan-tracuu-laixuat/fe/
-            echo "🛑 Stopping..."
+            
+            echo "🔍 Verifying structure..."
+            ls -la
+            echo ""
+            echo "Checking .next folder:"
+            ls -la .next/ | head -5
+            echo ""
+            echo "Checking package.json:"
+            cat package.json
+            
+            echo ""
+            echo "🛑 Stopping old process..."
             pm2 stop camdonhuttan 2>/dev/null || true
             pm2 delete camdonhuttan 2>/dev/null || true
-            echo "📦 Installing..."
-            npm ci --production
-            echo "🚀 Starting..."
+            
+            echo "📦 Installing dependencies..."
+            npm ci --omit=dev
+            
+            echo "🚀 Starting on port 3002..."
             pm2 start npm --name "camdonhuttan" -- start -- -p 3002
             pm2 save
+            
+            echo "✅ Deployment completed!"
             pm2 list
           ENDSSH
