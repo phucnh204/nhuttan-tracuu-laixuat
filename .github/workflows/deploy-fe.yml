@@ -9,23 +9,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout code
+      # 1️⃣ Checkout code
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2. Install FE
+      # 2️⃣ Cài dependencies
       - name: Install dependencies
         run: |
           cd fe
           npm ci
 
-      # 3. Build FE (Next.js Standalone)
+      # 3️⃣ Build project
       - name: Build project
         run: |
           cd fe
           npm run build
 
-      # 4. Copy standalone build lên server
+      # 4️⃣ Copy build folder và public lên server
       - name: Copy build to server
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -34,13 +34,14 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: 24700
           source: |
-            fe/.next/standalone/
-            fe/.next/static/
-            fe/public/
-          target: "/home/laixuat/fe/"
+            fe/.next
+            fe/public
+            fe/package.json
+            fe/node_modules
+          target: "/home/deploy/apps/nhuttan-tracuu-laixuat/fe/"
           overwrite: true
 
-      # 5. Restart PM2 (Next.js server)
+      # 5️⃣ Restart PM2 với port 3002
       - name: Restart PM2
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -49,14 +50,14 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: 24700
           script: |
-            cd /home/laixuat/fe
+            cd /home/deploy/apps/nhuttan-tracuu-laixuat/fe/
 
-            echo "🛑 Stop previous PM2"
-            pm2 stop fe-laixuat || true
-            pm2 delete fe-laixuat || true
+            echo "🛑 Stop old process (if any)"
+            pm2 stop camdonhuttan || true
+            pm2 delete camdonhuttan || true
 
-            echo "🚀 Start Next.js (Standalone mode)"
-            PORT=4000 pm2 start .next/standalone/server.js --name fe-laixuat
+            echo "🚀 Start new process on port 3002"
+            pm2 start npm --name "camdonhuttan" -- start -- -p 3002
 
             pm2 save
-            echo "✅ Deployment completed!"
+            echo "✅ Deployment completed"
