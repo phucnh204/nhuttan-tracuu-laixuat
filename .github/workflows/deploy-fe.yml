@@ -9,18 +9,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout code
+      # 1️⃣ Checkout repository
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2. Cài dependencies và build FE
-      - name: Build FE
+      # 2️⃣ Cài dependencies và build FE
+      - name: Install and build FE
         run: |
           cd fe
           npm ci
           npm run build
 
-      # 3. Copy build lên server
+      # 3️⃣ Debug (tùy chọn, kiểm tra file đã build chưa)
+      - name: List build files
+        run: |
+          cd fe
+          ls -l
+          ls -l .next
+          ls -l public
+
+      # 4️⃣ Copy build lên server
       - name: Copy build to server
         uses: appleboy/scp-action@v0.1.7
         with:
@@ -35,7 +43,7 @@ jobs:
           target: "/home/deploy/apps/nhuttan-tracuu-laixuat/fe/"
           overwrite: true
 
-      # 4. Restart PM2 port 3002
+      # 5️⃣ Restart PM2 port 3002
       - name: Restart PM2
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -45,8 +53,10 @@ jobs:
           port: 24700
           script: |
             cd /home/deploy/apps/nhuttan-tracuu-laixuat/fe/
+            echo "🛑 Stop old process (if any)"
             pm2 stop camdonhuttan || true
             pm2 delete camdonhuttan || true
+            echo "🚀 Start new process on port 3002"
             pm2 start npm --name "camdonhuttan" -- start -- -p 3002
             pm2 save
             echo "✅ Deployment completed"
