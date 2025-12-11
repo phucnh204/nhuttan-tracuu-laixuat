@@ -9,24 +9,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1️⃣ Checkout code
+      # 1. Checkout code
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ Install dependencies trên GitHub runner
+      # 2. Install FE
       - name: Install dependencies
         run: |
           cd fe
           npm ci
 
-      # 3️⃣ Build project trên runner
+      # 3. Build FE (Next.js Standalone)
       - name: Build project
         run: |
           cd fe
           npm run build
 
-      # 4️⃣ Copy build folder và package.json lên server
-      - name: Copy UI build to server
+      # 4. Copy standalone build lên server
+      - name: Copy build to server
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -34,13 +34,13 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: 24700
           source: |
-            fe/.next
-            fe/public
-            fe/package.json
+            fe/.next/standalone/
+            fe/.next/static/
+            fe/public/
           target: "/home/laixuat/fe/"
           overwrite: true
 
-      # 5️⃣ Restart PM2 trên server
+      # 5. Restart PM2 (Next.js server)
       - name: Restart PM2
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -49,16 +49,14 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: 24700
           script: |
-            set -e
             cd /home/laixuat/fe
 
-            echo "🛑 Stopping old PM2 process..."
+            echo "🛑 Stop previous PM2"
             pm2 stop fe-laixuat || true
             pm2 delete fe-laixuat || true
-            sleep 2
 
-            echo "🚀 Starting new PM2 process..."
-            PORT=4000 pm2 start "npx serve -s .next -l 4000" --name fe-laixuat
+            echo "🚀 Start Next.js (Standalone mode)"
+            PORT=4000 pm2 start .next/standalone/server.js --name fe-laixuat
+
             pm2 save
-
-            echo "✅ Deployment finished."
+            echo "✅ Deployment completed!"
