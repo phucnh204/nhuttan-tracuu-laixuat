@@ -33,7 +33,7 @@ const features = [
   {
     icon: <Shield className="w-8 h-8" />,
     title: "Uy Tín",
-    desc: "18+ năm kinh nghiệm, đảm bảo pháp lý",
+    desc: "20+ năm kinh nghiệm, đảm bảo pháp lý",
   },
   {
     icon: <TrendingUp className="w-8 h-8" />,
@@ -67,7 +67,7 @@ const faqs = [
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-green-50 mb-10">
       <Banner />
 
       {/* Features Section */}
@@ -78,11 +78,11 @@ export default function HomePage() {
               key={idx}
               className="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all hover:-translate-y-2"
             >
-              <div className="text-cyan-600 mb-4">{feature.icon}</div>
-              <h3 className="text-xl font-bold mb-2 text-gray-800">
+              <div className="text-yellow-600 mb-4">{feature.icon}</div>
+              <h3 className="text-xl font-bold mb-2 text-yellow-300">
                 {feature.title}
               </h3>
-              <p className="text-gray-600">{feature.desc}</p>
+              <p className="text-green-600">{feature.desc}</p>
             </div>
           ))}
         </div>
@@ -100,13 +100,13 @@ export default function HomePage() {
       <ViSao />
 
       {/* FEATURES SECTION NÂNG CẤP */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-24 bg-green-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-4">
+            <h2 className="text-3xl sm:text-4xl font-extrabold text-green-900 mb-4">
               Tính năng vượt trội
             </h2>
-            <p className="text-lg sm:text-xl text-gray-600">
+            <p className="text-lg sm:text-xl text-green-600">
               Hệ thống tra cứu hiện đại – nhanh chóng – an toàn
             </p>
           </div>
@@ -117,10 +117,10 @@ export default function HomePage() {
               <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 text-white flex items-center justify-center rounded-xl mb-6 text-2xl font-bold shadow-lg">
                 <Search className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-gray-800">
+              <h3 className="text-xl font-semibold mb-3 text-green-800">
                 Tra cứu nhanh chóng
               </h3>
-              <p className="text-gray-600">
+              <p className="text-green-600">
                 Nhập mã hợp đồng và số điện thoại để nhận kết quả ngay lập tức
                 qua hệ thống bảo mật cao cấp.
               </p>
@@ -131,10 +131,10 @@ export default function HomePage() {
               <div className="w-16 h-16 bg-gradient-to-br from-green-600 to-green-700 text-white flex items-center justify-center rounded-xl mb-6 text-2xl font-bold shadow-lg">
                 <ClipboardCheck className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-gray-800">
+              <h3 className="text-xl font-semibold mb-3 text-green-800">
                 Minh bạch & chính xác
               </h3>
-              <p className="text-gray-600">
+              <p className="text-green-600">
                 Dữ liệu đồng bộ trực tiếp từ hệ thống chính, đảm bảo tính chính
                 xác 100%.
               </p>
@@ -145,10 +145,10 @@ export default function HomePage() {
               <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-700 text-white flex items-center justify-center rounded-xl mb-6 text-2xl font-bold shadow-lg">
                 <ShieldCheck className="w-7 h-7" />
               </div>
-              <h3 className="text-xl font-semibold mb-3 text-gray-800">
+              <h3 className="text-xl font-semibold mb-3 text-green-800">
                 An toàn tuyệt đối
               </h3>
-              <p className="text-gray-600">
+              <p className="text-green-600">
                 Tất cả dữ liệu được mã hóa theo tiêu chuẩn quốc tế, chỉ bạn mới
                 có quyền tra cứu thông tin.
               </p>
@@ -159,11 +159,11 @@ export default function HomePage() {
 
       <DiaChi />
       <div className="text-center mb-12">
-        <HelpCircle className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-        <h2 className="text-3xl font-bold text-gray-800 mb-2">
+        <HelpCircle className="w-12 h-12 text-yellow-600 mx-auto mb-4" />
+        <h2 className="text-3xl font-bold text-yellow-300 mb-2">
           Câu Hỏi Thường Gặp
         </h2>
-        <p className="text-gray-600">Giải đáp những thắc mắc phổ biến</p>
+        <p className="text-green-600">Giải đáp những thắc mắc phổ biến</p>
       </div>
       <div className="space-y-4 mx-10 grid grid-cols-1  lg:grid-cols-2 gap-x-4">
         {faqs.map((faq, index) => (
@@ -171,11 +171,11 @@ export default function HomePage() {
             key={index}
             className="bg-white rounded-2xl shadow-lg p-2 hover:shadow-xl transition-all"
           >
-            <h3 className="text-lg font-bold text-gray-800 mb-3 flex items-start gap-3">
-              <span className="text-blue-600 flex-shrink-0">Q{index + 1}.</span>
+            <h3 className="text-lg font-bold text-yellow-400 mb-3 flex items-start gap-3">
+              <span className="text-yellow-400 flex-shrink-0">Q{index + 1}.</span>
               {faq.q}
             </h3>
-            <p className="text-gray-600 ml-8">{faq.a}</p>
+            <p className="text-green-600 ml-8">{faq.a}</p>
           </div>
         ))}
       </div>

@@ -83,9 +83,9 @@ export default function HuongDanTraCuu() {
   
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 mb-5">
       {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
+      <div className="bg-gradient-to-r from-green-600 to-green-600 text-yellow-300 py-16">
         <div className="max-w-6xl mx-auto px-6 text-center">
           <div className="flex justify-center mb-4">
             <BookOpen className="w-16 h-16" />
@@ -134,7 +134,7 @@ export default function HuongDanTraCuu() {
       </div>
 
       <div className="max-w-7xl mx-auto p-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-green-800">
           Hướng Dẫn Chi Tiết
         </h2>
 
@@ -142,8 +142,8 @@ export default function HuongDanTraCuu() {
           {steps.map((step, index) => (
             <div
               key={index}
-              className="bg-white rounded shadow-lg overflow-hidden transform transition-all duration-500 
-          hover:shadow-2xl hover:scale-[1.02] relative group"
+              className="bg-white rounded shadow-lg overflow-hidden
+           relative group"
             >
               <div className="grid md:grid-cols-2 gap-0">
                 {/* Image */}
@@ -153,7 +153,7 @@ export default function HuongDanTraCuu() {
                     alt={step.title}
                     className="w-full h-full object-contain  "
                   />
-                  <div className="absolute top-4 left-4 bg-gradient-to-br from-blue-500 to-indigo-600 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold shadow-xl">
+                  <div className="absolute top-4 left-4 bg-gradient-to-br from-yellow-500 to-yellow-300 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold shadow-xl">
                     {index + 1}
                   </div>
                 </div>
@@ -189,7 +189,7 @@ export default function HuongDanTraCuu() {
 
       {/* Video Tutorial Section */}
       <div className="max-w-6xl hidden mx-auto px-6 py-12">
-        <div className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-3xl p-12 text-white text-center">
+        <div className="bg-gradient-to-r from-purple-600 to-greem-600 rounded-3xl p-12 text-white text-center">
           <div className="flex justify-center mb-6">
             <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
               <Search className="w-10 h-10" />
@@ -214,15 +214,9 @@ export default function HuongDanTraCuu() {
         </div>
       </div>
 
-      {/* FAQ Section */}
-      <div className="max-w-4xl mx-auto px-6 py-12">
-        
-
-       
-      </div>
 
       {/* HERO SECTION */}
-      <section className="relative bg-gradient-to-br from-gray-100 via-blue-700 to-blue-50 text-white py-24 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-gray-100 via-green-700 to-blue-50 text-yellow-300 py-24 overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-300 rounded-full blur-3xl"></div>
@@ -241,7 +235,7 @@ export default function HuongDanTraCuu() {
 
           <a
             href="https://camdonhuttan.com/kiem-tra-lai-suat/"
-            className="inline-block bg-white text-blue-700 font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-blue-50 hover:shadow-xl hover:scale-105 transition-all duration-300"
+            className="inline-block bg-white text-yellow-300 font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-blue-50 hover:shadow-xl hover:scale-105 transition-all duration-300"
           >
             Tra cứu ngay →
           </a>

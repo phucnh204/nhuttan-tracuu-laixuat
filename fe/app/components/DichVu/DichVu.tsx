@@ -8,7 +8,7 @@ const services = [
   },
   {
     name: "Cầm Điện Thoại/Ipad",
-    desc: "Hỗ trợ cầm các dòng smartphone và iPad cao cấp như iPhone, Samsung, bảo đảm giá trị và pháp lý rõ ràng.",
+    desc: "Hỗ trợ cầm các dòng smartphone và iPad cao cấp như iPhone, Samsung,vv.",
     image: "/images/anh-dt.png",
   },
   {
@@ -24,15 +24,15 @@ const services = [
 ];
 function DichVu() {
   return (
-    <div className="bg-gradient-to-b from-cyan-50 to-white py-20">
+    <div className="bg-gradient-to-b from-green-50 to-white py-20">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold mb-4 text-gray-800">
+          <h2 className="text-4xl font-bold mb-4 text-yellow-300">
             Dịch Vụ Của Cửa hàng Nhựt Tân
           </h2>
-          <span className="text-xl text-gray-600">
+          <span className="text-xl text-green-500">
             Chấp nhận đa dạng loại tài sản thế chấp bao gồm 
-            <p className="text-sm">Xe máy - Ô tô - Điện thoại - Ipad - Laptop - Máy ảnh ...vv có giá trị cao</p>
+            <p className="text-sm ">Xe máy - Ô tô - Điện thoại - Ipad - Laptop - Máy ảnh ...vv có giá trị cao</p>
           </span>
         </div>
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
@@ -54,7 +54,7 @@ function DichVu() {
 
               {/* Content */}
               <div className="p-6">
-                <h3 className="text-2xl font-bold mb-3 text-gray-800 group-hover:text-blue-600 transition-colors duration-300">
+                <h3 className="text-2xl font-bold mb-3 text-green-600 group-hover:text-blue-600 transition-colors duration-300">
                   {service.name}
                 </h3>
                 <p className="text-gray-600 hidden lg:block leading-relaxed">

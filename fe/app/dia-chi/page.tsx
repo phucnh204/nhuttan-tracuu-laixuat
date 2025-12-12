@@ -5,10 +5,10 @@ function DiaChi() {
     <section className="py-10 bg-gray-50">
       <div className="mx-auto px-6">
         <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-green-900 mb-4">
             Hệ thống Cầm đồ Nhựt Tân
           </h2>
-          <p className="text-lg text-gray-600">
+          <p className="text-lg text-green-600">
             2 chi nhánh chính phục vụ quý khách
           </p>
         </div>
@@ -28,7 +28,7 @@ function DiaChi() {
             </div>
 
             <div className="p-6">
-              <h3 className="text-sm font-bold text-gray-900 mb-3">
+              <h3 className="text-sm font-bold text-green-900 mb-3">
                 CN1: 0936 636 399 – 102 Đường 3/2, Xuân Khánh, Ninh Kiều, Cần
                 Thơ
               </h3>
@@ -49,7 +49,7 @@ function DiaChi() {
             </div>
 
             <div className="p-6">
-              <h3 className="text-sm font-bold text-gray-900 mb-3">
+              <h3 className="text-sm font-bold text-green-900 mb-3">
                 CN2: 0879 393 955 – 555 Đường 30/4, Hưng Lợi, Ninh Kiều, Cần Thơ
               </h3>
             </div>

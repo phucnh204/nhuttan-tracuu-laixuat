@@ -12,7 +12,8 @@ function ChatBox() {
             className="bg-blue-500 hover:bg-blue-600 text-white rounded-full p-3 shadow-lg transition transform hover:scale-110"
             aria-label="Liên hệ qua Zalo"
           >
-            <MessageCircle className="w-6 h-6" />
+            <img src="/images/zalo.png" className="w-6 h-6" alt=""/>
+            {/*<MessageCircle  />*/}
           </a>
 
           <a

@@ -8,11 +8,11 @@ function ViSao() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Title */}
         <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-yellow-300 mb-4">
             Vì sao khách hàng tin chọn Nhựt Tân?
           </h2>
-          <p className="text-lg text-gray-600">
-            Uy tín – Minh bạch – Chuyên nghiệp từ năm 2006
+          <p className="text-lg text-green-400">
+            Uy tín – Minh bạch – Thành lập từ năm 2006
           </p>
         </div>
 
@@ -27,10 +27,10 @@ function ViSao() {
                 </div>
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-1">
-                  Kinh nghiệm hơn 18 năm
+                <h3 className="text-xl font-semibold text-yellow-300 mb-1">
+                  Kinh nghiệm hơn 20+ năm
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-green-600">
                   Hoạt động từ năm 2006 với hàng ngàn khách hàng tin tưởng và
                   quay lại.
                 </p>
@@ -45,10 +45,10 @@ function ViSao() {
                 </div>
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-1">
+                <h3 className="text-xl font-semibold text-yellow-300 mb-1">
                   Đội ngũ chuyên nghiệp – tận tâm
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-green-600">
                   Nhân viên được đào tạo bài bản, tư vấn rõ ràng – hỗ trợ chu
                   đáo.
                 </p>
@@ -63,10 +63,10 @@ function ViSao() {
                 </div>
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-1">
+                <h3 className="text-xl font-semibold text-yellow-300 mb-1">
                   Công nghệ hiện đại – tra cứu online
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-green-600">
                   Hệ thống kiểm tra lãi suất – lịch sử giao dịch minh bạch, rõ
                   ràng.
                 </p>
@@ -81,10 +81,10 @@ function ViSao() {
                 </div>
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-1">
+                <h3 className="text-xl font-semibold text-yellow-300 mb-1">
                   Bảo mật tuyệt đối
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-green-600">
                   Mã hóa toàn bộ thông tin khách hàng – chỉ bạn mới xem được.
                 </p>
               </div>
@@ -94,7 +94,7 @@ function ViSao() {
           {/* IMAGE */}
 
           <div className="relative flex justify-center">
-            <div className="rounded-3xl overflow-hidden shadow-xl border border-gray-100">
+            <div className="rounded-3xl overflow-hidden shadow-xl border border-yellow-100">
               <Image
                 className="w-full h-[380px] object-cover"
                 alt="Nhựt Tân uy tín"

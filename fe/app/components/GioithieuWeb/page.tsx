@@ -13,10 +13,10 @@ import anh_phone from "../../../public/images/anh-website.png";
 
 export default function WebsiteIntroSection() {
   return (
-    <section className="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-900 text-white relative overflow-hidden">
+    <section className="py-20 bg-gradient-to-br from-yellow-200 via-yellow-400 to-indigo-200 text-green-500 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-blue-400 rounded-full opacity-20 blur-3xl animate-pulse"></div>
+        <div className="absolute top-20 left-10 w-96 h-96 bg-yellow-400 rounded-full opacity-20 blur-3xl animate-pulse"></div>
         <div
           className="absolute bottom-20 right-10 w-96 h-96 bg-purple-400 rounded-full opacity-20 blur-3xl animate-pulse"
           style={{ animationDelay: "1s" }}

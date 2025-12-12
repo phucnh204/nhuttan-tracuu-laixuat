@@ -49,12 +49,12 @@ function PromotionBanner() {
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-200 opacity-20 rounded-full translate-x-1/4 translate-y-1/4"></div>
 
       {/* Header */}
-      <div className="max-w-6xl mx-auto px-4 text-center mb-12">
-        <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 animate-pulse tracking-wide text-blue-900">
+      <div className="max-w-8xl mx-auto px-4 text-center mb-12">
+        <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 animate-pulse tracking-wide text-yellow-400">
           <Gift className="inline mr-2 text-blue-500" /> SĂN QUÀ SIÊU GIÁ TRỊ!{" "}
           <Gift className="inline ml-2 text-blue-500" />
         </h2>
-        <p className="text-lg sm:text-xl md:text-2xl leading-relaxed text-blue-800">
+        <p className="text-lg sm:text-xl md:text-2xl leading-relaxed text-green-800">
           Từ <strong>01/12/2025</strong> đến <strong>31/12/2025</strong>, khi
           quý khách{" "}
           <span className="underline decoration-blue-400">
@@ -76,7 +76,7 @@ function PromotionBanner() {
               alt={prize.title}
               className="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-110"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-blue-900/70 to-transparent flex flex-col justify-end p-4 transition-opacity duration-500 group-hover:opacity-100 opacity-90">
+            <div className="absolute inset-0 bg-gradient-to-t from-yellow-900/70 to-transparent flex flex-col justify-end p-4 transition-opacity duration-500 group-hover:opacity-100 opacity-90">
               <h3 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
                 <Gift /> {prize.title}
               </h3>
@@ -90,7 +90,7 @@ function PromotionBanner() {
 
       {/* Timeline nâng cấp chuyên nghiệp */}
       <div className="max-w-7xl mx-auto px-4 mb-16">
-        <h3 className="text-3xl font-bold mb-12 flex items-center justify-center gap-3 text-blue-900">
+        <h3 className="text-3xl font-bold mb-12 flex items-center justify-center gap-3 text-green-400">
           <Clock size={32} /> Thời gian sự kiện
         </h3>
 
@@ -104,11 +104,11 @@ function PromotionBanner() {
               <Clock size={32} />
             </div> */}
             <div className="bg-white p-5 rounded-xl shadow-lg border border-blue-100 w-full sm:max-w-xs">
-              <p className="text-xl font-bold text-blue-800">12/11/2025</p>
-              <p className="text-blue-700 mt-2 font-medium">
+              <p className="text-xl font-bold text-yellow-800">12/11/2025</p>
+              <p className="text-green-700 mt-2 font-medium">
                 Bắt đầu nhận phiếu tham gia
               </p>
-              <p className="text-sm text-blue-500 mt-1">
+              <p className="text-sm text-green-500 mt-1">
                 Khách hàng nhận ngay phiếu bốc thăm khi cầm đồ từ 5.000.000đ
               </p>
             </div>
@@ -120,11 +120,11 @@ function PromotionBanner() {
               <Clock size={32} />
             </div> */}
             <div className="bg-white p-5 rounded-xl shadow-lg border border-blue-100 w-full sm:max-w-xs">
-              <p className="text-xl font-bold text-blue-800">31/12/2025</p>
-              <p className="text-blue-700 mt-2 font-medium">
+              <p className="text-xl font-bold text-yellow-800">31/12/2025</p>
+              <p className="text-green-700 mt-2 font-medium">
                 Livestream bóc thăm - Trao thưởng
               </p>
-              <p className="text-sm text-blue-500 mt-1">
+              <p className="text-sm text-green-500 mt-1">
                 Theo dõi livestream để biết ai là người may mắn trúng giải đặc
                 biệt
               </p>
@@ -134,20 +134,20 @@ function PromotionBanner() {
       </div>
 
       {/* Participation rules nâng cấp */}
-      <div className="max-w-7xl mx-auto px-4 mb-16">
-        <h3 className="text-3xl font-bold text-center mb-10 flex items-center justify-center gap-3 text-blue-900">
+      <div className="max-w-8xl mx-auto px-4 mb-16">
+        <h3 className="text-3xl font-bold text-center mb-10 flex items-center justify-center gap-3 text-yellow-400">
           <CheckCircle size={32} /> Thể lệ tham gia
         </h3>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           {/* Rule 1 */}
           <div className="flex items-start p-4 bg-blue-50 rounded-xl shadow hover:shadow-lg transition cursor-pointer">
-            <CheckCircle className="text-blue-500 mt-1 mr-3" size={24} />
+            <CheckCircle className="text-green-500 mt-1 mr-3" size={24} />
             <div>
-              <p className="font-semibold text-blue-800 mb-1">
+              <p className="font-semibold text-green-300 mb-1">
                 Nhận phiếu bốc thăm
               </p>
-              <p className="text-blue-700 text-sm">
+              <p className="text-gray-400 text-sm">
                 Mỗi khách hàng cầm đồ từ <strong>5.000.000đ</strong> sẽ nhận
                 ngay 1 phiếu bốc thăm may mắn.
               </p>
@@ -156,10 +156,10 @@ function PromotionBanner() {
 
           {/* Rule 2 */}
           <div className="flex items-start p-4 bg-blue-50 rounded-xl shadow hover:shadow-lg transition cursor-pointer">
-            <CheckCircle className="text-blue-500 mt-1 mr-3" size={24} />
+            <CheckCircle className="text-green-500 mt-1 mr-3" size={24} />
             <div>
-              <p className="font-semibold text-blue-800 mb-1">Giá trị phiếu</p>
-              <p className="text-blue-700 text-sm">
+              <p className="font-semibold text-green-300 mb-1">Giá trị phiếu</p>
+              <p className="text-gray-400 text-sm">
                 Phiếu bốc thăm chỉ có giá trị trong thời gian sự kiện và không
                 được chuyển nhượng.
               </p>
@@ -168,12 +168,12 @@ function PromotionBanner() {
 
           {/* Rule 3 */}
           <div className="flex items-start p-4 bg-blue-50 rounded-xl shadow hover:shadow-lg transition cursor-pointer">
-            <CheckCircle className="text-blue-500 mt-1 mr-3" size={24} />
+            <CheckCircle className="text-green-500 mt-1 mr-3" size={24} />
             <div>
-              <p className="font-semibold text-blue-800 mb-1">
+              <p className="font-semibold text-green-300 mb-1">
                 Thông báo người trúng giải
               </p>
-              <p className="text-blue-700 text-sm">
+              <p className="text-gray-400 text-sm">
                 Người trúng giải sẽ được liên hệ qua số điện thoại trong phiếu.
               </p>
             </div>
@@ -181,12 +181,12 @@ function PromotionBanner() {
 
           {/* Rule 4 */}
           <div className="flex items-start p-4 bg-blue-50 rounded-xl shadow hover:shadow-lg transition cursor-pointer">
-            <CheckCircle className="text-blue-500 mt-1 mr-3" size={24} />
+            <CheckCircle className="text-green-500 mt-1 mr-3" size={24} />
             <div>
-              <p className="font-semibold text-blue-800 mb-1">
+              <p className="font-semibold text-green-300 mb-1">
                 Quy định giải thưởng
               </p>
-              <p className="text-blue-700 text-sm">
+              <p className="text-gray-400 text-sm">
                 Giải thưởng không có giá trị quy đổi thành tiền mặt.
               </p>
             </div>
@@ -197,35 +197,35 @@ function PromotionBanner() {
       {/* Benefits nâng cấp */}
       <div className="max-w-7xl mx-auto px-4 text-center space-y-8 mb-16">
         {/* Header */}
-        <p className="text-3xl sm:text-4xl font-extrabold flex items-center justify-center gap-3 text-gradient-to-r from-blue-500 to-cyan-400 animate-pulse">
+        <p className="text-3xl sm:text-4xl font-extrabold flex items-center justify-center gap-3 text-green-400 animate-pulse">
           <ShieldCheck size={32} /> Cơ hội trúng lớn – Tại sao không thử ngay?
         </p>
 
         {/* Benefit cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div className="flex items-start gap-4 p-5 bg-white  shadow-lg  hover:shadow-2xl transition">
-            <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-400 to-cyan-500 text-white rounded-full">
+            <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-green-400 to-cyan-100 text-white rounded-full">
               <ShieldCheck size={20} />
             </div>
             <div className="text-left">
-              <h4 className="font-semibold text-blue-800 text-lg">
+              <h4 className="font-semibold text-yellow-400 text-lg">
                  Nhận tiền nhanh chóng
               </h4>
-              <p className="text-blue-600 text-sm mt-1">
+              <p className="text-green-600 text-sm mt-1">
                 Cầm nhanh – Giá tốt, nhận ngay tiền mặt mà không cần chờ lâu
               </p>
             </div>
           </div>
 
           <div className="flex items-start gap-4 p-5 bg-white  shadow-lg  hover:shadow-2xl transition">
-            <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-400 to-cyan-500 text-white rounded-full">
+            <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-green-400 to-cyan-100 text-white rounded-full">
               <Clock size={20} />
             </div>
             <div className="text-left">
-              <h4 className="font-semibold text-blue-800 text-lg">
+              <h4 className="font-semibold text-yellow-400 text-lg">
                  Thủ tục nhanh gọn
               </h4>
-              <p className="text-blue-600 text-sm mt-1">
+              <p className="text-green-600 text-sm mt-1">
                 Chỉ 5 phút – Không rườm rà, trải nghiệm tiện lợi và chuyên
                 nghiệp
               </p>
@@ -233,14 +233,14 @@ function PromotionBanner() {
           </div>
 
           <div className="flex items-start gap-4 p-5 bg-white  shadow-lg  hover:shadow-2xl transition">
-            <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-400 to-cyan-500 text-white rounded-full">
+            <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-green-400 to-cyan-100 text-white rounded-full">
               <Lock size={20} />
             </div>
             <div className="text-left">
-              <h4 className="font-semibold text-blue-800 text-lg">
+              <h4 className="font-semibold text-yellow-400 text-lg">
                  Bảo mật tuyệt đối
               </h4>
-              <p className="text-blue-600 text-sm mt-1">
+              <p className="text-green-600 text-sm mt-1">
                 Thông tin khách hàng được bảo vệ 100%, an tâm tuyệt đối khi tham
                 gia
               </p>
@@ -248,14 +248,14 @@ function PromotionBanner() {
           </div>
 
           <div className="flex items-start gap-4 p-5 bg-white  shadow-lg  hover:shadow-2xl transition">
-            <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-blue-400 to-cyan-500 text-white rounded-full">
+            <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-green-400 to-cyan-100 text-white rounded-full">
               <MapPin size={20} />
             </div>
             <div className="text-left">
-              <h4 className="font-semibold text-blue-800 text-lg">
+              <h4 className="font-semibold text-yellow-400 text-lg">
                  Hệ thống uy tín
               </h4>
-              <p className="text-blue-600 text-sm mt-1">
+              <p className="text-green-600 text-sm mt-1">
                 Cầm Đồ Nhựt Tân tại Cần Thơ – Địa chỉ đáng tin cậy, trải nghiệm
                 chuyên nghiệp
               </p>
@@ -267,14 +267,14 @@ function PromotionBanner() {
       </div>
 
       {/* Branch Maps nâng cấp */}
-      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
+      <div className="max-w-8xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
         {branches.map((branch, idx) => (
           <div
             key={idx}
             className=" overflow-hidden shadow-lg border border-blue-100 hover:shadow-2xl transition cursor-pointer bg-white"
           >
             {/* Header with gradient */}
-            <div className="bg-gradient-to-r from-blue-400 to-blue-600 p-4 flex items-center gap-3  text-white">
+            <div className="bg-gradient-to-r from-green-500 to-green-600 p-4 flex items-center gap-3  text-yellow-300">
               <MapPin size={28} />
               <h4 className="text-2xl font-bold">{branch.name}</h4>
             </div>

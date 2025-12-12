@@ -8,6 +8,7 @@ import {
   Search,
   ClipboardList,
   MapPin,
+  Cannabis,
   PhoneCall,
   BookOpenCheck,
   ShieldQuestionMark,
@@ -32,16 +33,17 @@ export default function Header() {
       href: "https://camdonhuttan.com/kiem-tra-lai-suat/",
       icon: Search,
     },
+
     // { name: "Quy trình làm việc", href: "/quy-trinh", icon: ClipboardList },
     { name: "Chương trình cuối năm", href: "/chuong-trinh", icon: ClipboardList },
-    // { name: "Địa chỉ cửa hàng", href: "/dia-chi", icon: MapPin },
+    { name: "Ưu đãi sinh viên", href: "/uu-dai-sinh-vien", icon: Cannabis },
   ];
 
   return (
     <>
       {" "}
       {/* Top Bar - Info */}
-      <div className="hidden lg:block bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+      <div className="hidden lg:block bg-gradient-to-r from-green-400 to-green-500 text-white">
         <div className="max-w-7xl mx-auto px-4 py-2">
           <div className="flex items-center justify-between text-sm">
             <div className="flex items-center gap-10">
@@ -52,15 +54,15 @@ export default function Header() {
               <div className="flex items-center gap-2">
                 <Phone className="w-4 h-4" />
                 <a
-                  href="tel:0936636399"
-                  className="hover:text-blue-200 transition-colors"
+                  href="tel:0346636399"
+                  className="hover:text-yellow-200 transition-colors"
                 >
-                  0936636399 {"  | "}
+                  0346636399 {"  | "}
                 </a>
                 <Phone className="w-4 h-4" />
                 <a
                   href="tel:0879393955"
-                  className="hover:text-blue-200 transition-colors"
+                  className="hover:text-yellow-200 transition-colors"
                 >
                   0879393955
                 </a>
@@ -100,7 +102,7 @@ export default function Header() {
           <div className="flex justify-between items-center h-16 md:h-20">
             {/* LOGO */}
             <Link href="/" className="flex items-center p-3 group">
-              {/* <img src={logoImage} className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl flex items-center justify-center text-white font-bold text-lg md:text-xl shadow-lg group-hover:scale-105 transition duration-300"/> */}
+              {/* <img src={logoImage} className="w-10 h-10 md:w-12 md:h-12 bg-gradient-to-br from-yellow-600 to-yellow-800 rounded-xl flex items-center justify-center text-white font-bold text-lg md:text-xl shadow-lg group-hover:scale-105 transition duration-300"/> */}
 
               <Image
                 src={logoImage}
@@ -118,10 +120,10 @@ export default function Header() {
                   <a
                     key={item.name}
                     href={item.href}
-                    className="flex items-center gap-2 px-2 py-2 text-blue-800 rounded-lg  hover:text-yellow-500  transition duration-300 font-semibold"
+                    className="flex items-center gap-2 px-2 py-2  text-yellow-300 rounded-lg  hover:text-yellow-500  transition duration-300 font-semibold"
                   >
                     <Icon className="w-4 h-4" />
-                    <span>{item.name}</span>
+                    <span className="">{item.name}</span>
                   </a>
                 );
               })}
@@ -130,7 +132,7 @@ export default function Header() {
             {/* CTA BUTTON - Desktop */}
             <a
               // href="https://camdonhuttan.com/kiem-tra-lai-suat/"
-              className="hidden text-sm md:inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-2.5 rounded-xl font-semibold hover:from-blue-700 hover:to-blue-800 hover:shadow-lg transition duration-300"
+              className="hidden text-sm md:inline-flex items-center gap-2 bg-gradient-to-r from-green-600 to-green-400 text-yellow-300 px-6 py-2.5 rounded-xl font-semibold hover:from-yellow-700 hover:to-yellow-800 hover:shadow-lg transition duration-300"
             >
               <PhoneCall className="w-4 h-4" />
               0979 3939 55 - 0346 6363 99
@@ -160,7 +162,7 @@ export default function Header() {
                     <a
                       key={item.name}
                       href={item.href}
-                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:text-blue-600 hover:bg-blue-50 transition duration-300 font-medium"
+                      className="flex items-center gap-3 px-4 py-3 rounded-lg text-gray-700 hover:text-yellow-600 hover:bg-yellow-50 transition duration-300 font-medium"
                       onClick={() => setIsMenuOpen(false)}
                     >
                       <Icon className="w-5 h-5" />
@@ -172,7 +174,7 @@ export default function Header() {
                 {/* CTA Button - Mobile */}
                 <a
                   href="/lookup"
-                  className="flex items-center justify-center gap-2 mt-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-xl font-semibold hover:from-blue-700 hover:to-blue-800 transition duration-300"
+                  className="flex items-center justify-center gap-2 mt-2 bg-gradient-to-r from-yellow-600 to-yellow-700 text-white px-6 py-3 rounded-xl font-semibold hover:from-yellow-700 hover:to-yellow-800 transition duration-300"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <PhoneCall className="w-5 h-5" />
