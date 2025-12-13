@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Gift, Clock, MapPin, ShieldCheck, CheckCircle, Lock } from "lucide-react";
+import DiaChi from "@/app/dia-chi/page";
 
 const prizes = [
   {
@@ -134,7 +135,7 @@ function PromotionBanner() {
       </div>
 
       {/* Participation rules nâng cấp */}
-      <div className="max-w-8xl mx-auto px-4 mb-16">
+      <div className="max-w-7xl mx-auto px-4 mb-16">
         <h3 className="text-3xl font-bold text-center mb-10 flex items-center justify-center gap-3 text-yellow-400">
           <CheckCircle size={32} /> Thể lệ tham gia
         </h3>
@@ -266,32 +267,8 @@ function PromotionBanner() {
         </div>
       </div>
 
-      {/* Branch Maps nâng cấp */}
-      <div className="max-w-8xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-        {branches.map((branch, idx) => (
-          <div
-            key={idx}
-            className=" overflow-hidden shadow-lg border border-blue-100 hover:shadow-2xl transition cursor-pointer bg-white"
-          >
-            {/* Header with gradient */}
-            <div className="bg-gradient-to-r from-green-500 to-green-600 p-4 flex items-center gap-3  text-yellow-300">
-              <MapPin size={28} />
-              <h4 className="text-2xl font-bold">{branch.name}</h4>
-            </div>
 
-            {/* Google Map */}
-            <div className="w-full h-64 md:h-72">
-              <iframe
-                src={branch.mapSrc}
-                width="100%"
-                height="100%"
-                loading="lazy"
-                className="border-0 rounded-b-3xl"
-              ></iframe>
-            </div>
-          </div>
-        ))}
-      </div>
+      <DiaChi/>
     </section>
   );
 }

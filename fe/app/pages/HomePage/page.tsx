@@ -23,6 +23,7 @@ import ChatBox from "@/app/components/ChatBox";
 import DinhGia from "@/app/components/DinhGia/DinhGia";
 import DichVu from "@/app/components/DichVu/DichVu";
 import Banner from "@/app/components/Banner/Banner";
+import HoatDongNhatTan from "@/app/components/HoatDong/HoatDong";
 
 const features = [
   {
@@ -92,6 +93,8 @@ export default function HomePage() {
 
       {/* Services Section */}
       <DichVu />
+      <HoatDongNhatTan/>
+
       {/* GIỚI THIỆU WEBSITE */}
 
       <WebsiteIntroSection />
@@ -100,62 +103,7 @@ export default function HomePage() {
       <ViSao />
 
       {/* FEATURES SECTION NÂNG CẤP */}
-      <section className="py-24 bg-green-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-green-900 mb-4">
-              Tính năng vượt trội
-            </h2>
-            <p className="text-lg sm:text-xl text-green-600">
-              Hệ thống tra cứu hiện đại – nhanh chóng – an toàn
-            </p>
-          </div>
 
-          <div className="grid md:grid-cols-3 gap-10">
-            {/* Feature 1 */}
-            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition duration-300 border border-blue-100">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 text-white flex items-center justify-center rounded-xl mb-6 text-2xl font-bold shadow-lg">
-                <Search className="w-7 h-7" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3 text-green-800">
-                Tra cứu nhanh chóng
-              </h3>
-              <p className="text-green-600">
-                Nhập mã hợp đồng và số điện thoại để nhận kết quả ngay lập tức
-                qua hệ thống bảo mật cao cấp.
-              </p>
-            </div>
-
-            {/* Feature 2 */}
-            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition duration-300 border border-green-100">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-600 to-green-700 text-white flex items-center justify-center rounded-xl mb-6 text-2xl font-bold shadow-lg">
-                <ClipboardCheck className="w-7 h-7" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3 text-green-800">
-                Minh bạch & chính xác
-              </h3>
-              <p className="text-green-600">
-                Dữ liệu đồng bộ trực tiếp từ hệ thống chính, đảm bảo tính chính
-                xác 100%.
-              </p>
-            </div>
-
-            {/* Feature 3 */}
-            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition duration-300 border border-purple-100">
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-700 text-white flex items-center justify-center rounded-xl mb-6 text-2xl font-bold shadow-lg">
-                <ShieldCheck className="w-7 h-7" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3 text-green-800">
-                An toàn tuyệt đối
-              </h3>
-              <p className="text-green-600">
-                Tất cả dữ liệu được mã hóa theo tiêu chuẩn quốc tế, chỉ bạn mới
-                có quyền tra cứu thông tin.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
       <DiaChi />
       <div className="text-center mb-12">

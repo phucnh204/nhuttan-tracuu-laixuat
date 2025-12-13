@@ -46,7 +46,7 @@ function DichVu() {
                 <img
                   src={service.image}
                   alt={service.name}
-                  className="w-full h-full object-cover object-center "
+                  className="w-full h-full object-contain object-center "
                 />
                 {/* Optional overlay for text highlight */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
