@@ -1,4 +1,5 @@
 name: Deploy FE UI to Server
+
 on:
   push:
     branches: ["main"]
@@ -6,82 +7,49 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
-      
-      - name: Install and build FE
-        run: |
-          cd fe
-          npm ci
-          npm run build
-      
+        uses: actions/checkout@v4
+
       - name: Setup SSH
         run: |
           mkdir -p ~/.ssh
           chmod 700 ~/.ssh
           echo "${{ secrets.SERVER_SSH_KEY }}" > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -p 24700 ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
-      
-      - name: Deploy files
+          ssh-keyscan -p 24700 ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Sync source code
         run: |
-          # Xóa .next cũ trên server trước
-          ssh -p 24700 -i ~/.ssh/id_rsa \
-            -o StrictHostKeyChecking=no \
-            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} \
-            "rm -rf /home/deploy/apps/nhuttan-tracuu-laixuat/fe/.next"
-          
-          # Sync thư mục .next (CHÚ Ý: không có dấu / sau .next)
-          echo "📦 Deploying .next build..."
-          rsync -avzh \
-            -e "ssh -p 24700 -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
-            fe/.next \
+          rsync -avz --delete \
+            --exclude=node_modules \
+            --exclude=.next \
+            --exclude=.git \
+            -e "ssh -p 24700" \
+            ./fe/ \
             ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/deploy/apps/nhuttan-tracuu-laixuat/fe/
-          
-          # Sync thư mục public
-          echo "📦 Deploying public assets..."
-          rsync -avzh --delete \
-            -e "ssh -p 24700 -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
-            fe/public/ \
-            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/deploy/apps/nhuttan-tracuu-laixuat/fe/public/
-          
-          # Sync package files
-          echo "📦 Deploying package files..."
-          rsync -avzh \
-            -e "ssh -p 24700 -i ~/.ssh/id_rsa -o StrictHostKeyChecking=no" \
-            fe/package.json \
-            fe/package-lock.json \
-            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/deploy/apps/nhuttan-tracuu-laixuat/fe/
-      
-      - name: Restart PM2
+
+      - name: Build & Restart on server
         run: |
-          ssh -p 24700 -i ~/.ssh/id_rsa \
-            -o StrictHostKeyChecking=no \
-            ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'ENDSSH'
-            cd /home/deploy/apps/nhuttan-tracuu-laixuat/fe/
-            
-            echo "🔍 Verifying structure..."
-            ls -la
-            echo ""
-            echo "Checking .next folder:"
-            ls -la .next/ | head -5
-            echo ""
-            echo "Checking package.json:"
-            cat package.json
-            
-            echo ""
-            echo "🛑 Stopping old process..."
-            pm2 stop camdonhuttan 2>/dev/null || true
-            pm2 delete camdonhuttan 2>/dev/null || true
-            
-            echo "📦 Installing dependencies..."
-            npm ci --omit=dev
-            
-            echo "🚀 Starting on port 3002..."
-            pm2 start npm --name "camdonhuttan" -- start -- -p 3002
+          ssh -p 24700 ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
+            set -e
+            cd /home/deploy/apps/nhuttan-tracuu-laixuat/fe
+
+            echo "🧹 Clean old build..."
+            rm -rf .next
+
+            echo "📦 Install deps..."
+            npm ci
+
+            echo "🏗️ Build Next.js..."
+            npm run build
+
+            echo "♻️ Restart PM2..."
+            pm2 delete camdonhuttan || true
+            pm2 start "npx next start -p 3002" --name camdonhuttan
             pm2 save
-            
-            echo "✅ Deployment completed!"
+
+            echo "✅ Deploy done"
             pm2 list
-          ENDSSH
+          EOF
