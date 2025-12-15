@@ -120,7 +120,7 @@ export default function Header() {
                   <a
                     key={item.name}
                     href={item.href}
-                    className="flex items-center gap-2 px-2 py-2  text-yellow-300 rounded-lg  hover:text-yellow-500  transition duration-300 font-semibold"
+                    className="flex items-center gap-2 px-2 py-2  text-green-600 rounded-lg  hover:text-yellow-500  transition duration-300 font-semibold"
                   >
                     <Icon className="w-4 h-4" />
                     <span className="">{item.name}</span>
