@@ -19,7 +19,49 @@ import {
     Building2,
 } from "lucide-react";
 import DichVu from "@/app/components/DichVu/DichVu";
+import {Metadata} from "next";
 
+export const metadata_uudai: Metadata = {
+    title: 'Ưu Đãi Sinh Viên - Giảm 50% Lãi Suất Kỳ Đầu | Cầm Đồ Nhựt Tân',
+    description: '🎓 Chương trình ưu đãi đặc biệt cho sinh viên Cần Thơ: Giảm 50% lãi suất kỳ đầu tiên! Cầm điện thoại, laptop, xe máy với thủ tục đơn giản, chỉ cần thẻ sinh viên. Hotline: 0919 636 399',
+    keywords: [
+        'ưu đãi sinh viên Cần Thơ',
+        'cầm đồ sinh viên',
+        'vay tiền sinh viên',
+        'giảm 50% lãi suất',
+        'cầm điện thoại sinh viên',
+        'cầm laptop sinh viên',
+    ],
+    openGraph: {
+        title: 'Giảm 50% Lãi Suất Cho Sinh Viên - Cầm Đồ Nhựt Tân',
+        description: 'Ưu đãi đặc biệt dành riêng cho sinh viên Cần Thơ',
+        url: 'https://camdocantho.net/uu-dai-sinh-vien',
+        images: [{
+            url: 'https://camdocantho.net/og-student.jpg',
+            width: 1200,
+            height: 630,
+        }],
+    },
+    alternates: {
+        canonical: 'https://camdocantho.net/uu-dai-sinh-vien',
+    },
+}
+
+const studentOfferSchema = {
+    "@context": "https://schema.org",
+    "@type": "Offer",
+    "name": "Ưu đãi cầm đồ cho sinh viên",
+    "description": "Giảm 50% lãi suất kỳ đầu tiên cho sinh viên",
+    "price": "0",
+    "priceCurrency": "VND",
+    "availability": "https://schema.org/InStock",
+    "eligibleCustomerType": "Student",
+    "validFrom": "2025-01-01",
+    "validThrough": "2025-12-31",
+    "seller": {
+        "@id": "https://camdocantho.net/#organization"
+    }
+}
 export default function UuDaiSinhVien() {
     return (
         <div className="min-h-screen bg-green-500 text-green-800">

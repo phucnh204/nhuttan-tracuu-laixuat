@@ -3,7 +3,61 @@
 import React from "react";
 import { Gift, Clock, MapPin, ShieldCheck, CheckCircle, Lock } from "lucide-react";
 import DiaChi from "@/app/dia-chi/page";
+import {Metadata} from "next";
+export const metadata_khuyenmai: Metadata = {
+  title: 'Khuyến Mãi Tháng 12/2025 - Trúng 1 Chỉ Vàng | Cầm Đồ Nhựt Tân',
+  description: '🎁 Săn quà siêu giá trị! Cầm đồ từ 5.000.000đ nhận ngay phiếu bốc thăm trúng: 1 chỉ vàng 9999, Samsung A07, A06 và nhiều phần quà hấp dẫn. Từ 01/12 - 31/12/2025. Chi tiết: 0919 636 399',
+  keywords: [
+    'khuyến mãi cầm đồ',
+    'bốc thăm trúng thưởng',
+    'trúng vàng',
+    'quà tặng sinh viên',
+    'khuyến mãi Cần Thơ',
+    'Samsung A07',
+  ],
+  openGraph: {
+    title: 'Trúng 1 Chỉ Vàng Khi Cầm Đồ - Khuyến Mãi 12/2025',
+    description: 'Cầm đồ từ 5 triệu, nhận phiếu bốc thăm trúng vàng và nhiều giải thưởng',
+    url: 'https://camdocantho.net/khuyen-mai',
+    images: [{
+      url: 'https://camdocantho.net/og-promotion.jpg',
+      width: 1200,
+      height: 630,
+    }],
+  },
+  alternates: {
+    canonical: 'https://camdocantho.net/khuyen-mai',
+  },
+}
 
+const promotionEventSchema = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  "name": "Chương trình bốc thăm trúng thưởng",
+  "startDate": "2025-12-01T08:00:00+07:00",
+  "endDate": "2025-12-31T20:00:00+07:00",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "location": {
+    "@type": "Place",
+    "name": "Cầm Đồ Nhựt Tân",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "102 Đường 3 Tháng 2",
+      "addressLocality": "Cần Thơ",
+      "addressCountry": "VN"
+    }
+  },
+  "organizer": {
+    "@id": "https://camdocantho.net/#organization"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "VND",
+    "availability": "https://schema.org/InStock"
+  }
+}
 const prizes = [
   {
     title: "Giải Đặc Biệt",

@@ -1,6 +1,5 @@
 import HoatDongNhatTan from "@/app/components/HoatDong/HoatDong";
 
-"use-client";
 
 import {Clock, FileText, Shield, Star, TrendingUp} from "lucide-react";
 
@@ -9,6 +8,41 @@ import about2 from "@/public/images/about6.jpg";
 import about3 from "@/public/images/about3.png";
 import about4 from "@/public/images/about4.png";
 import DiaChi from "../dia-chi/page";
+import {Metadata} from "next";
+
+export const metadata_gioithieu: Metadata = {
+    title: 'Giới Thiệu Cầm Đồ Nhựt Tân - 20 Năm Uy Tín Tại Cần Thơ',
+    description: 'Tìm hiểu về Cầm Đồ Nhựt Tân - đơn vị cầm đồ uy tín với 20+ năm kinh nghiệm, phục vụ 100,000+ khách hàng tại Cần Thơ. Đảm bảo pháp lý, minh bạch, lãi suất từ 1%/tháng.',
+    keywords: [
+        'giới thiệu Cầm Đồ Nhựt Tân',
+        'lịch sử hình thành',
+        'cầm đồ uy tín Cần Thơ',
+        'kinh nghiệm 20 năm',
+        '100000 khách hàng',
+    ],
+    openGraph: {
+        title: 'Về Chúng Tôi - Cầm Đồ Nhựt Tân',
+        description: '20+ năm kinh nghiệm, phục vụ 100,000+ khách hàng tin tưởng',
+        url: 'https://camdocantho.net/gioi-thieu',
+        images: [{
+            url: 'https://camdocantho.net/og-about.jpg',
+            width: 1200,
+            height: 630,
+        }],
+    },
+    alternates: {
+        canonical: 'https://camdocantho.net/gioi-thieu',
+    },
+}
+
+const aboutPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "mainEntity": {
+        "@id": "https://camdocantho.net/#organization"
+    },
+    "description": "Thông tin về Cầm Đồ Nhựt Tân - 20 năm uy tín tại Cần Thơ"
+}
 
 function GioiThieu() {
     return (
