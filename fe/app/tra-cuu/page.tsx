@@ -104,223 +104,159 @@ export default function HuongDanTraCuu() {
     },
   ];
 
-  
+
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 mb-5">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-green-600 to-green-600 text-yellow-300 py-16">
-        <div className="max-w-6xl mx-auto px-6 text-center">
-          <div className="flex justify-center mb-4">
-            <BookOpen className="w-16 h-16" />
-          </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
-            Hướng Dẫn Tra Cứu Lãi Xuất
-          </h1>
-          <p className="text-xl text-blue-100 max-w-2xl mx-auto">
-            Làm theo 4 bước đơn giản để tra cứu thông tin lãi suất của bạn
-          </p>
-        </div>
-      </div>
+      <div className="min-h-screen bg-gradient-to-b from-green-50 via-white to-white mb-10">
 
-      {/* Quick Stats */}
-      <div className="max-w-6xl mx-auto px-6 -mt-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-          {[
-            {
-              icon: <Clock className="w-6 h-6" />,
-              label: "Chỉ 2 phút",
-              value: "Tra cứu nhanh",
-            },
-            {
-              icon: <Shield className="w-6 h-6" />,
-              label: "100% Bảo mật",
-              value: "An toàn tuyệt đối",
-            },
-            {
-              icon: <Star className="w-6 h-6" />,
-              label: "24/7",
-              value: "Hệ thống tra cứu luôn sẵn sàng",
-            },
-          ].map((stat, i) => (
-            <div
-              key={i}
-              className="bg-white rounded-2xl shadow-lg p-6 text-center hover:shadow-xl transition-all"
-            >
-              <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 text-blue-600 rounded-full mb-3">
-                {stat.icon}
-              </div>
-              <p className="text-gray-600 text-sm mb-1">{stat.label}</p>
-              <p className="text-xl font-bold text-gray-800">{stat.value}</p>
+        {/* HEADER */}
+        <div className="bg-gradient-to-r from-green-700 to-green-800 text-yellow-400 py-20">
+          <div className="max-w-6xl mx-auto px-6 text-center">
+            <div className="flex justify-center mb-6">
+              <BookOpen className="w-16 h-16 text-yellow-400" />
             </div>
-          ))}
-        </div>
-      </div>
 
-      <div className="max-w-7xl mx-auto p-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 text-green-800">
-          Hướng Dẫn Chi Tiết
-        </h2>
+            <h1 className="text-4xl md:text-5xl font-extrabold mb-4 text-white">
+              Hướng Dẫn Tra Cứu Lãi Suất
+            </h1>
 
-        <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2">
-          {steps.map((step, index) => (
-            <div
-              key={index}
-              className="bg-white rounded shadow-lg overflow-hidden
-           relative group"
-            >
-              <div className="grid md:grid-cols-2 gap-0">
-                {/* Image */}
-                <div className="relative h-64 md:h-auto overflow-hidden">
-                  <img
-                    src={step.image}
-                    alt={step.title}
-                    className="w-full h-full object-contain  "
-                  />
-                  <div className="absolute top-4 left-4 bg-gradient-to-br from-yellow-500 to-yellow-300 text-white w-12 h-12 rounded-full flex items-center justify-center text-xl font-bold shadow-xl">
-                    {index + 1}
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-8">
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h3 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">
-                        {step.title}
-                      </h3>
-                      <p className="text-gray-600">{step.desc}</p>
-                    </div>
-                  </div>
-
-                  {/* Chi tiết step (UI) */}
-                  <div className="mt-6 space-y-4">
-                    {step.details.map((detail, i) => (
-                      <div key={i} className="flex items-start gap-3">
-                        <div className="w-5 h-5 bg-green-500 rounded-full flex-shrink-0 mt-0.5"></div>
-                        <div className="text-gray-700 leading-relaxed">
-                          {detail}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Video Tutorial Section */}
-      <div className="max-w-6xl hidden mx-auto px-6 py-12">
-        <div className="bg-gradient-to-r from-purple-600 to-greem-600 rounded-3xl p-12 text-white text-center">
-          <div className="flex justify-center mb-6">
-            <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center backdrop-blur-sm">
-              <Search className="w-10 h-10" />
-            </div>
-          </div>
-          <h2 className="text-3xl font-bold mb-4">Video Hướng Dẫn Chi Tiết</h2>
-          <p className="text-xl text-purple-100 mb-8 max-w-2xl mx-auto">
-            Xem video hướng dẫn trực quan để hiểu rõ hơn về quy trình tra cứu
-          </p>
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 max-w-3xl mx-auto">
-            <div className="aspect-video bg-gray-800 rounded-xl flex items-center justify-center">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <ChevronRight className="w-8 h-8" />
-                </div>
-                <p className="text-white/80">
-                  Video hướng dẫn sẽ được cập nhật sớm
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <section className="py-24 bg-green-50">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-extrabold text-green-900 mb-4">
-              Tính năng vượt trội
-            </h2>
-            <p className="text-lg sm:text-xl text-green-600">
-              Hệ thống tra cứu hiện đại – nhanh chóng – an toàn
+            <p className="text-lg text-green-100 max-w-2xl mx-auto">
+              Thực hiện theo 4 bước đơn giản để kiểm tra lãi suất & thông tin hợp đồng
             </p>
           </div>
+        </div>
 
-          <div className="grid md:grid-cols-3 gap-10">
-            {/* Feature 1 */}
-            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition duration-300 border border-blue-100">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-blue-700 text-white flex items-center justify-center rounded-xl mb-6 text-2xl font-bold shadow-lg">
-                <Search className="w-7 h-7" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3 text-green-800">
-                Tra cứu nhanh chóng
-              </h3>
-              <p className="text-green-600">
-                Nhập mã hợp đồng và số điện thoại để nhận kết quả ngay lập tức
-                qua hệ thống bảo mật cao cấp.
-              </p>
-            </div>
-
-            {/* Feature 2 */}
-            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition duration-300 border border-green-100">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-600 to-green-700 text-white flex items-center justify-center rounded-xl mb-6 text-2xl font-bold shadow-lg">
-                <ClipboardCheck className="w-7 h-7" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3 text-green-800">
-                Minh bạch & chính xác
-              </h3>
-              <p className="text-green-600">
-                Dữ liệu đồng bộ trực tiếp từ hệ thống chính, đảm bảo tính chính
-                xác 100%.
-              </p>
-            </div>
-
-            {/* Feature 3 */}
-            <div className="bg-white p-8 rounded-3xl shadow-lg hover:shadow-2xl transition duration-300 border border-purple-100">
-              <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-700 text-white flex items-center justify-center rounded-xl mb-6 text-2xl font-bold shadow-lg">
-                <ShieldCheck className="w-7 h-7" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3 text-green-800">
-                An toàn tuyệt đối
-              </h3>
-              <p className="text-green-600">
-                Tất cả dữ liệu được mã hóa theo tiêu chuẩn quốc tế, chỉ bạn mới
-                có quyền tra cứu thông tin.
-              </p>
-            </div>
+        {/* QUICK STATS */}
+        <div className="max-w-6xl mx-auto px-6 -mt-14">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
+            {[
+              { icon: <Clock />, label: "Chỉ 2 phút", value: "Tra cứu nhanh" },
+              { icon: <Shield />, label: "100% Bảo mật", value: "An toàn tuyệt đối" },
+              { icon: <Star />, label: "24/7", value: "Hệ thống luôn sẵn sàng" },
+            ].map((stat, i) => (
+                <div
+                    key={i}
+                    className="bg-white rounded-2xl shadow-lg p-6 text-center
+                       hover:-translate-y-1 hover:shadow-xl transition-all"
+                >
+                  <div className="inline-flex items-center justify-center w-12 h-12
+                            bg-green-100 text-green-700 rounded-full mb-3">
+                    {stat.icon}
+                  </div>
+                  <p className="text-gray-500 text-sm">{stat.label}</p>
+                  <p className="text-xl font-bold text-gray-800">{stat.value}</p>
+                </div>
+            ))}
           </div>
         </div>
-      </section>
 
-      {/* HERO SECTION */}
-      <section className="relative bg-gradient-to-br from-gray-100 via-green-700 to-blue-50 text-yellow-300 py-24 overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-300 rounded-full blur-3xl"></div>
+        {/* HƯỚNG DẪN */}
+        <div className="max-w-7xl mx-auto px-6 mb-24">
+          <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-14 text-green-800">
+            Hướng Dẫn Chi Tiết
+          </h2>
+
+          <div className="grid md:grid-cols-2 gap-10">
+            {steps.map((step, index) => (
+                <div
+                    key={index}
+                    className="bg-white rounded-3xl shadow-lg overflow-hidden
+                       border border-green-100 hover:shadow-2xl transition"
+                >
+                  <div className="grid md:grid-cols-2">
+                    {/* IMAGE */}
+                    <div className="relative bg-green-50 flex items-center justify-center p-6">
+                      <img
+                          src={step.image}
+                          alt={step.title}
+                          className="max-h-56 object-contain"
+                      />
+                      <div className="absolute top-4 left-4 w-12 h-12
+                                bg-yellow-400 text-green-900
+                                rounded-full flex items-center justify-center
+                                text-xl font-bold shadow-lg">
+                        {index + 1}
+                      </div>
+                    </div>
+
+                    {/* CONTENT */}
+                    <div className="p-8">
+                      <h3 className="text-2xl font-bold text-green-800 mb-2">
+                        {step.title}
+                      </h3>
+                      <p className="text-gray-600 mb-6">{step.desc}</p>
+
+                      <div className="space-y-3">
+                        {step.details.map((detail, i) => (
+                            <div key={i} className="flex gap-3">
+                              <div className="w-2.5 h-2.5 mt-2 bg-green-600 rounded-full" />
+                              <span className="text-gray-700 leading-relaxed">{detail}</span>
+                            </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            ))}
+          </div>
         </div>
 
-        <div className=" mx-auto px-6 text-center relative z-10">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 leading-tight drop-shadow-lg">
-            Hệ thống tra cứu thông tin lãi suất
-            <br />
-            <span className="text-blue-200">dành cho khách hàng Nhựt Tân</span>
-          </h1>
-          <p className="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto mb-8">
-            An toàn – Minh bạch – Nhanh chóng. Dễ dàng kiểm tra tiền lãi theo
-            kỳ, tình trạng thanh toán và lịch sử giao dịch.
-          </p>
+        {/* TÍNH NĂNG */}
+        <section className="py-24 bg-green-50">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl sm:text-4xl font-extrabold text-green-900 mb-4">
+                Tính năng vượt trội
+              </h2>
+              <p className="text-lg text-green-700">
+                Hệ thống tra cứu hiện đại – minh bạch – an toàn
+              </p>
+            </div>
 
+            <div className="grid md:grid-cols-3 gap-10">
+              {[
+                { icon: <Search />, title: "Tra cứu nhanh", desc: "Nhập mã hợp đồng và số điện thoại để xem kết quả ngay." },
+                { icon: <ClipboardCheck />, title: "Minh bạch", desc: "Dữ liệu đồng bộ trực tiếp từ hệ thống chính." },
+                { icon: <ShieldCheck />, title: "Bảo mật", desc: "Thông tin được mã hóa – chỉ bạn mới truy cập." },
+              ].map((f, i) => (
+                  <div
+                      key={i}
+                      className="bg-white p-8 rounded-3xl border border-green-100
+                         shadow-lg hover:-translate-y-1 hover:shadow-2xl transition"
+                  >
+                    <div className="w-16 h-16 mb-6 flex items-center justify-center
+                              bg-gradient-to-br from-green-700 to-green-600
+                              text-white rounded-xl shadow-lg">
+                      {f.icon}
+                    </div>
+                    <h3 className="text-xl font-bold text-green-800 mb-3">
+                      {f.title}
+                    </h3>
+                    <p className="text-gray-600">{f.desc}</p>
+                  </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA */}
+        <section className="py-24 bg-gradient-to-r from-green-700 to-green-800 text-center">
+          <h2 className="text-4xl font-extrabold text-white mb-6">
+            Tra cứu lãi suất ngay hôm nay
+          </h2>
+          <p className="text-green-100 max-w-xl mx-auto mb-8">
+            Kiểm tra nhanh – rõ ràng – chính xác theo từng hợp đồng
+          </p>
           <a
-            href="https://camdonhuttan.com/kiem-tra-lai-suat/"
-            className="inline-block bg-white text-yellow-300 font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-blue-50 hover:shadow-xl hover:scale-105 transition-all duration-300"
+              href="https://camdonhuttan.com/kiem-tra-lai-suat/"
+              className="inline-block bg-yellow-400 text-green-900 font-bold
+                   px-10 py-4 rounded-xl shadow-lg
+                   hover:bg-yellow-300 hover:scale-105 transition"
           >
             Tra cứu ngay →
           </a>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
   );
+
 }

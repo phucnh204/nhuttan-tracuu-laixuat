@@ -98,233 +98,135 @@ const branches = [
 
 function PromotionBanner() {
   return (
-    <section className="w-full bg-gradient-to-b from-white to-blue-50 text-blue-800 py-16 relative overflow-hidden">
-      {/* Decorative circles */}
-      <div className="absolute top-0 left-0 w-72 h-72 bg-blue-100 opacity-30 rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-200 opacity-20 rounded-full translate-x-1/4 translate-y-1/4"></div>
+      <section className="w-full bg-gradient-to-b from-white to-green-50 text-gray-800 py-20 relative overflow-hidden">
+        {/* Decorative background */}
+        <div className="absolute top-0 left-0 w-72 h-72 bg-green-100/40 rounded-full -translate-x-1/2 -translate-y-1/2 blur-2xl"></div>
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-yellow-200/20 rounded-full translate-x-1/4 translate-y-1/4 blur-3xl"></div>
 
-      {/* Header */}
-      <div className="max-w-8xl mx-auto px-4 text-center mb-12">
-        <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 animate-pulse tracking-wide text-yellow-400">
-          <Gift className="inline mr-2 text-blue-500" /> SĂN QUÀ SIÊU GIÁ TRỊ!{" "}
-          <Gift className="inline ml-2 text-blue-500" />
-        </h2>
-        <p className="text-lg sm:text-xl md:text-2xl leading-relaxed text-green-800">
-          Từ <strong>01/12/2025</strong> đến <strong>31/12/2025</strong>, khi
-          quý khách{" "}
-          <span className="underline decoration-blue-400">
-            cầm đồ từ 5.000.000đ
-          </span>
-          , sẽ nhận ngay phiếu bốc thăm trúng thưởng hấp dẫn!
-        </p>
-      </div>
-
-      {/* Prizes */}
-      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-        {prizes.map((prize, idx) => (
-          <div
-            key={idx}
-            className="relative rounded-3xl overflow-hidden shadow-xl transform hover:scale-105 hover:shadow-2xl transition duration-500 cursor-pointer group"
-          >
-            <img
-              src={prize.image}
-              alt={prize.title}
-              className="w-full h-64 object-cover object-center transition-transform duration-500 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-yellow-900/70 to-transparent flex flex-col justify-end p-4 transition-opacity duration-500 group-hover:opacity-100 opacity-90">
-              <h3 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
-                <Gift /> {prize.title}
-              </h3>
-              <p className="text-sm sm:text-base text-white/90">
-                {prize.description}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* Timeline nâng cấp chuyên nghiệp */}
-      <div className="max-w-7xl mx-auto px-4 mb-16">
-        <h3 className="text-3xl font-bold mb-12 flex items-center justify-center gap-3 text-green-400">
-          <Clock size={32} /> Thời gian sự kiện
-        </h3>
-
-        <div className="relative flex flex-col sm:flex-row items-center sm:justify-between">
-          {/* Connecting line */}
-          <div className="absolute top-1/2 left-8 sm:left-0 sm:right-0 h-1 bg-blue-200 z-0 hidden sm:block"></div>
-
-          {/* Event 1 */}
-          <div className="relative z-10 flex flex-col items-center text-center mb-10 sm:mb-0 sm:w-1/2 group">
-            {/* <div className="flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full text-white shadow-xl mb-4 transform transition group-hover:scale-105">
-              <Clock size={32} />
-            </div> */}
-            <div className="bg-white p-5 rounded-xl shadow-lg border border-blue-100 w-full sm:max-w-xs">
-              <p className="text-xl font-bold text-yellow-800">12/11/2025</p>
-              <p className="text-green-700 mt-2 font-medium">
-                Bắt đầu nhận phiếu tham gia
-              </p>
-              <p className="text-sm text-green-500 mt-1">
-                Khách hàng nhận ngay phiếu bốc thăm khi cầm đồ từ 5.000.000đ
-              </p>
-            </div>
-          </div>
-
-          {/* Event 2 */}
-          <div className="relative z-10 flex flex-col items-center text-center sm:w-1/2 group">
-            {/* <div className="flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full text-white shadow-xl mb-4 transform transition group-hover:scale-105">
-              <Clock size={32} />
-            </div> */}
-            <div className="bg-white p-5 rounded-xl shadow-lg border border-blue-100 w-full sm:max-w-xs">
-              <p className="text-xl font-bold text-yellow-800">31/12/2025</p>
-              <p className="text-green-700 mt-2 font-medium">
-                Livestream bóc thăm - Trao thưởng
-              </p>
-              <p className="text-sm text-green-500 mt-1">
-                Theo dõi livestream để biết ai là người may mắn trúng giải đặc
-                biệt
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Participation rules nâng cấp */}
-      <div className="max-w-7xl mx-auto px-4 mb-16">
-        <h3 className="text-3xl font-bold text-center mb-10 flex items-center justify-center gap-3 text-yellow-400">
-          <CheckCircle size={32} /> Thể lệ tham gia
-        </h3>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {/* Rule 1 */}
-          <div className="flex items-start p-4 bg-blue-50 rounded-xl shadow hover:shadow-lg transition cursor-pointer">
-            <CheckCircle className="text-green-500 mt-1 mr-3" size={24} />
-            <div>
-              <p className="font-semibold text-green-300 mb-1">
-                Nhận phiếu bốc thăm
-              </p>
-              <p className="text-gray-400 text-sm">
-                Mỗi khách hàng cầm đồ từ <strong>5.000.000đ</strong> sẽ nhận
-                ngay 1 phiếu bốc thăm may mắn.
-              </p>
-            </div>
-          </div>
-
-          {/* Rule 2 */}
-          <div className="flex items-start p-4 bg-blue-50 rounded-xl shadow hover:shadow-lg transition cursor-pointer">
-            <CheckCircle className="text-green-500 mt-1 mr-3" size={24} />
-            <div>
-              <p className="font-semibold text-green-300 mb-1">Giá trị phiếu</p>
-              <p className="text-gray-400 text-sm">
-                Phiếu bốc thăm chỉ có giá trị trong thời gian sự kiện và không
-                được chuyển nhượng.
-              </p>
-            </div>
-          </div>
-
-          {/* Rule 3 */}
-          <div className="flex items-start p-4 bg-blue-50 rounded-xl shadow hover:shadow-lg transition cursor-pointer">
-            <CheckCircle className="text-green-500 mt-1 mr-3" size={24} />
-            <div>
-              <p className="font-semibold text-green-300 mb-1">
-                Thông báo người trúng giải
-              </p>
-              <p className="text-gray-400 text-sm">
-                Người trúng giải sẽ được liên hệ qua số điện thoại trong phiếu.
-              </p>
-            </div>
-          </div>
-
-          {/* Rule 4 */}
-          <div className="flex items-start p-4 bg-blue-50 rounded-xl shadow hover:shadow-lg transition cursor-pointer">
-            <CheckCircle className="text-green-500 mt-1 mr-3" size={24} />
-            <div>
-              <p className="font-semibold text-green-300 mb-1">
-                Quy định giải thưởng
-              </p>
-              <p className="text-gray-400 text-sm">
-                Giải thưởng không có giá trị quy đổi thành tiền mặt.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Benefits nâng cấp */}
-      <div className="max-w-7xl mx-auto px-4 text-center space-y-8 mb-16">
         {/* Header */}
-        <p className="text-3xl sm:text-4xl font-extrabold flex items-center justify-center gap-3 text-green-400 animate-pulse">
-          <ShieldCheck size={32} /> Cơ hội trúng lớn – Tại sao không thử ngay?
-        </p>
-
-        {/* Benefit cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div className="flex items-start gap-4 p-5 bg-white  shadow-lg  hover:shadow-2xl transition">
-            <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-green-400 to-cyan-100 text-white rounded-full">
-              <ShieldCheck size={20} />
-            </div>
-            <div className="text-left">
-              <h4 className="font-semibold text-yellow-400 text-lg">
-                 Nhận tiền nhanh chóng
-              </h4>
-              <p className="text-green-600 text-sm mt-1">
-                Cầm nhanh – Giá tốt, nhận ngay tiền mặt mà không cần chờ lâu
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4 p-5 bg-white  shadow-lg  hover:shadow-2xl transition">
-            <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-green-400 to-cyan-100 text-white rounded-full">
-              <Clock size={20} />
-            </div>
-            <div className="text-left">
-              <h4 className="font-semibold text-yellow-400 text-lg">
-                 Thủ tục nhanh gọn
-              </h4>
-              <p className="text-green-600 text-sm mt-1">
-                Chỉ 5 phút – Không rườm rà, trải nghiệm tiện lợi và chuyên
-                nghiệp
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4 p-5 bg-white  shadow-lg  hover:shadow-2xl transition">
-            <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-green-400 to-cyan-100 text-white rounded-full">
-              <Lock size={20} />
-            </div>
-            <div className="text-left">
-              <h4 className="font-semibold text-yellow-400 text-lg">
-                 Bảo mật tuyệt đối
-              </h4>
-              <p className="text-green-600 text-sm mt-1">
-                Thông tin khách hàng được bảo vệ 100%, an tâm tuyệt đối khi tham
-                gia
-              </p>
-            </div>
-          </div>
-
-          <div className="flex items-start gap-4 p-5 bg-white  shadow-lg  hover:shadow-2xl transition">
-            <div className="flex items-center justify-center w-12 h-12 bg-gradient-to-br from-green-400 to-cyan-100 text-white rounded-full">
-              <MapPin size={20} />
-            </div>
-            <div className="text-left">
-              <h4 className="font-semibold text-yellow-400 text-lg">
-                 Hệ thống uy tín
-              </h4>
-              <p className="text-green-600 text-sm mt-1">
-                Cầm Đồ Nhựt Tân tại Cần Thơ – Địa chỉ đáng tin cậy, trải nghiệm
-                chuyên nghiệp
-              </p>
-            </div>
-          </div>
-
-          
+        <div className="max-w-7xl mx-auto px-4 text-center mb-16 relative z-10">
+          <h2 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 tracking-wide text-green-800">
+            <Gift className="inline mr-2 text-yellow-400" />
+            SĂN QUÀ SIÊU GIÁ TRỊ
+            <Gift className="inline ml-2 text-yellow-400" />
+          </h2>
+          <p className="text-lg sm:text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+            Từ <strong className="text-green-700">01/12/2025</strong> đến{" "}
+            <strong className="text-green-700">31/12/2025</strong>, khi quý khách{" "}
+            <span className="underline decoration-yellow-400 font-semibold">
+          cầm đồ từ 5.000.000đ
+        </span>{" "}
+            sẽ nhận ngay phiếu bốc thăm trúng thưởng hấp dẫn!
+          </p>
         </div>
-      </div>
 
+        {/* Prizes */}
+        <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mb-20">
+          {prizes.map((prize, idx) => (
+              <div
+                  key={idx}
+                  className="relative rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 group"
+              >
+                <img
+                    src={prize.image}
+                    alt={prize.title}
+                    className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-green-900/80 to-transparent flex flex-col justify-end p-5">
+                  <h3 className="text-xl font-bold text-white flex items-center gap-2">
+                    <Gift className="text-yellow-400" /> {prize.title}
+                  </h3>
+                  <p className="text-white/90 text-sm mt-1">
+                    {prize.description}
+                  </p>
+                </div>
+              </div>
+          ))}
+        </div>
 
-      <DiaChi/>
-    </section>
+        {/* Timeline */}
+        <div className="max-w-6xl mx-auto px-4 mb-20">
+          <h3 className="text-3xl font-bold mb-12 flex items-center justify-center gap-3 text-green-800">
+            <Clock size={32} className="text-yellow-400" /> Thời gian sự kiện
+          </h3>
+
+          <div className="relative flex flex-col sm:flex-row items-center justify-center gap-12">
+            {[{
+              date: "12/11/2025",
+              title: "Bắt đầu nhận phiếu",
+              desc: "Khách hàng cầm đồ từ 5.000.000đ nhận ngay phiếu tham gia"
+            },{
+              date: "31/12/2025",
+              title: "Livestream trao thưởng",
+              desc: "Công bố và trao giải trực tiếp trên livestream"
+            }].map((item, i) => (
+                <div key={i} className="bg-white p-6 rounded-2xl shadow-lg border border-green-100 max-w-sm w-full">
+                  <p className="text-xl font-bold text-yellow-500">{item.date}</p>
+                  <p className="text-green-800 font-semibold mt-2">{item.title}</p>
+                  <p className="text-gray-600 text-sm mt-1">{item.desc}</p>
+                </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Rules */}
+        <div className="max-w-7xl mx-auto px-4 mb-20">
+          <h3 className="text-3xl font-bold text-center mb-12 text-green-800 flex justify-center gap-3">
+            <CheckCircle size={32} className="text-yellow-400" /> Thể lệ tham gia
+          </h3>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {[
+              "Cầm đồ từ 5.000.000đ nhận 1 phiếu bốc thăm",
+              "Phiếu chỉ có giá trị trong thời gian sự kiện",
+              "Người trúng giải được liên hệ trực tiếp",
+              "Giải thưởng không quy đổi tiền mặt"
+            ].map((rule, i) => (
+                <div
+                    key={i}
+                    className="flex items-start gap-3 p-5 bg-white rounded-xl shadow hover:shadow-lg transition"
+                >
+                  <CheckCircle className="text-green-600 mt-1" />
+                  <p className="text-gray-700">{rule}</p>
+                </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Benefits */}
+        <div className="max-w-7xl mx-auto px-4 text-center space-y-10 mb-20">
+          <h3 className="text-3xl sm:text-4xl font-extrabold text-green-800 flex justify-center gap-3">
+            <ShieldCheck size={32} className="text-yellow-400" />
+            Cơ hội trúng lớn – Đừng bỏ lỡ!
+          </h3>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {[
+              { icon: ShieldCheck, title: "Nhận tiền nhanh", desc: "Giải ngân nhanh – giá tốt – không chờ đợi" },
+              { icon: Clock, title: "Thủ tục gọn nhẹ", desc: "Chỉ 5 phút – trải nghiệm chuyên nghiệp" },
+              { icon: Lock, title: "Bảo mật tuyệt đối", desc: "Thông tin khách hàng được bảo vệ 100%" },
+              { icon: MapPin, title: "Hệ thống uy tín", desc: "Cầm Đồ Nhựt Tân – đáng tin cậy tại Cần Thơ" }
+            ].map((b, i) => (
+                <div
+                    key={i}
+                    className="flex items-start gap-4 p-6 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition"
+                >
+                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-gradient-to-br from-green-600 to-emerald-500 text-white">
+                    <b.icon size={20} />
+                  </div>
+                  <div className="text-left">
+                    <h4 className="font-semibold text-green-800 text-lg">{b.title}</h4>
+                    <p className="text-gray-600 text-sm mt-1">{b.desc}</p>
+                  </div>
+                </div>
+            ))}
+          </div>
+        </div>
+
+        <DiaChi />
+      </section>
   );
+
 }
 
 export default PromotionBanner;
