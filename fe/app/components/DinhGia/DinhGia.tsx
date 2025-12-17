@@ -73,7 +73,7 @@ export default function DinhGia() {
                     <div className="grid grid-cols-2 gap-4 ">
                         {[
                             { src: "/images/anh-dt.png", label: "Điện thoại / iPad" },
-                            { src: "/images/anh-laptop1.png", label: "Laptop" },
+                            { src: "/images/anh-laptop3.png", label: "Laptop / PC" },
                             { src: "/images/anh-xe-may.png", label: "Xe máy / Ô tô" },
                             { src: "/images/anh-dh.png", label: "Apple Watch" },
                         ].map((item) => (

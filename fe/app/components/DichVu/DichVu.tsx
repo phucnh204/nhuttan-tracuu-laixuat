@@ -12,9 +12,9 @@ const services = [
     image: "/images/anh-dt.png",
   },
   {
-    name: "Cầm Laptop",
-    desc: "Cầm các loại laptop, từ MacBook đến gaming laptop và workstation, thủ tục nhanh, giá trị định rõ.",
-    image: "/images/anh-laptop1.png",
+    name: "Cầm Laptop/ PC",
+    desc: "Cầm các loại laptop, từ MacBook đến gaming laptop và workstation,Máy tính bàn - PC.",
+    image: "/images/anh-laptop3.png",
   },
   {
     name: "Cầm Đồng Hồ",
