@@ -70,7 +70,7 @@ export default function DinhGia() {
                     </div>
 
                     {/* IMAGE GRID */}
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-4 ">
                         {[
                             { src: "/images/anh-dt.png", label: "Điện thoại / iPad" },
                             { src: "/images/anh-laptop1.png", label: "Laptop" },
