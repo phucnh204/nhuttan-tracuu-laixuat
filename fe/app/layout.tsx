@@ -389,59 +389,19 @@ export default function RootLayout({
                 }}
             />
 
-            {/* Google Analytics - Thay YOUR-GA4-ID bằng mã thật */}
-            {/*<Script*/}
-            {/*    src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"*/}
-            {/*    strategy="afterInteractive"*/}
-            {/*/>*/}
-            <Script id="google-analytics" strategy="afterInteractive">
-                {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXXXX', {
-              page_path: window.location.pathname,
-            });
-          `}
-            </Script>
 
-            {/* Facebook Pixel - Optional */}
-            <Script id="facebook-pixel" strategy="afterInteractive">
-                {`
-            !function(f,b,e,v,n,t,s)
-            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)}(window, document,'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', 'YOUR-PIXEL-ID');
-            fbq('track', 'PageView');
-          `}
-            </Script>
 
-            {/* Zalo Chat Widget - Optional */}
-            <Script
-                src="https://sp.zalo.me/plugins/sdk.js"
-                strategy="lazyOnload"
-            />
+
+
+
+
         </head>
 
         <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
             suppressHydrationWarning
         >
-        {/* Noscript fallback for Facebook Pixel */}
-        <noscript>
-            <img
-                height="1"
-                width="1"
-                style={{display: 'none'}}
-                src="https://www.facebook.com/tr?id=YOUR-PIXEL-ID&ev=PageView&noscript=1"
-                alt=""
-            />
-        </noscript>
+
 
         <ClientWrapper>
             <Header/>
@@ -451,15 +411,7 @@ export default function RootLayout({
             <Footer/>
         </ClientWrapper>
 
-        {/* Zalo Chat Button */}
-        <div
-            className="zalo-chat-widget"
-            data-oaid="YOUR-ZALO-OA-ID"
-            data-welcome-message="Xin chào! Cầm Đồ Nhựt Tân có thể giúp gì cho bạn?"
-            data-autopopup="0"
-            data-width="350"
-            data-height="420"
-        />
+
         </body>
         </html>
     );
