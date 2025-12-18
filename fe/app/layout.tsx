@@ -110,13 +110,13 @@ export const metadata: Metadata = {
     icons: {
         icon: [
             {url: "/logo-tab.png"},
-            {url: "/favicon-16x16.png", sizes: "16x16", type: "image/png"},
-            {url: "/favicon-32x32.png", sizes: "32x32", type: "image/png"},
+            // {url: "/favicon-16x16.png", sizes: "16x16", type: "image/png"},
+            // {url: "/favicon-32x32.png", sizes: "32x32", type: "image/png"},
         ],
         shortcut: "/logo-tab.png",
         apple: [
-            {url: "/apple-touch-icon.png"},
-            {url: "/apple-touch-icon-180x180.png", sizes: "180x180", type: "image/png"},
+            // {url: "/apple-touch-icon.png"},
+            // {url: "/apple-touch-icon-180x180.png", sizes: "180x180", type: "image/png"},
         ],
     },
 
@@ -551,14 +551,7 @@ export default function RootLayout({
         </ClientWrapper>
 
         {/* Zalo Chat Button - Thêm sau khi load xong */}
-        <div
-            className="zalo-chat-widget"
-            data-oaid="YOUR-ZALO-OA-ID"
-            data-welcome-message="Xin chào! Nhựt Tân có thể giúp gì cho bạn?"
-            data-autopopup="0"
-            data-width="350"
-            data-height="420"
-        ></div>
+
         </body>
         </html>
     );
