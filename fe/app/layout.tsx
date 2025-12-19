@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     },
 
     // DESCRIPTION - Tối ưu 155 ký tự cho Google
-    description: 'Cầm đồ uy tín #1 Cần Thơ ⭐ Lãi 1%/tháng ⚡ 5 phút có tiền 🔒 Không giữ xe. Cầm vàng, xe, điện thoại. 2 CN: Đ.3/2 & Đ.30/4 ☎️ 0919636399',
+    description: 'Cầm đồ uy tín #1 Cần Thơ ⭐ Lãi từ 1%/tháng ⚡ 5 phút có tiền .Với 2 CN: Đ.3/2 & Đ.30/4 ☎️ 0919636399',
 
     // KEYWORDS - Thêm từ khóa mới
     keywords: [
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
         'Cầm Đồ Nhựt Tân',
 
         // Từ khóa theo sản phẩm
-        'cầm vàng Cần Thơ',
+        // 'cầm vàng Cần Thơ',
         'cầm xe máy Cần Thơ',
         'cầm điện thoại Cần Thơ',
         'cầm laptop Cần Thơ',
@@ -63,8 +63,8 @@ export const metadata: Metadata = {
         // Long-tail keywords - Conversion cao
         'cầm đồ lãi suất thấp Cần Thơ',
         'cầm đồ giải ngân nhanh',
-        'cầm xe không giữ xe Cần Thơ',
-        'cầm đồ không cần CMND',
+        // 'cầm xe không giữ xe Cần Thơ',
+        // 'cầm đồ không cần CMND',
         'cầm đồ gần tôi',
         'cầm đồ 24/7 Cần Thơ',
 
@@ -76,13 +76,13 @@ export const metadata: Metadata = {
 
         // Từ khóa sinh viên
         'cầm đồ sinh viên Cần Thơ',
-        'vay tiền sinh viên Cần Thơ',
+        // 'vay tiền sinh viên Cần Thơ',
         'cầm đồ gần đại học Cần Thơ',
 
         // Từ khóa cạnh tranh
         'cầm đồ giá cao Cần Thơ',
-        'cầm đồ online Cần Thơ',
-        'vay tiền nhanh Cần Thơ',
+        // 'cầm đồ online Cần Thơ',
+        // 'vay tiền nhanh Cần Thơ',
     ],
 
     // AUTHORS & CREATOR
@@ -127,7 +127,7 @@ export const metadata: Metadata = {
         url: 'https://camdocantho.net',
         siteName: 'Cầm Đồ Nhựt Tân Cần Thơ',
         title: 'Cầm Đồ Nhựt Tân - Lãi 1% | 5 Phút Có Tiền | Uy Tín 20+ Năm',
-        description: '⭐ #1 Cần Thơ - Lãi suất chỉ 1%/tháng - Không giữ xe - Giải ngân 5 phút. Cầm vàng, xe máy, điện thoại, laptop. Hotline: 0919 636 399',
+        description: '⭐ #1 Cần Thơ - Lãi suất chỉ từ 1%/tháng -  Giải ngân 5 phút. Cầm vàng, xe máy, điện thoại, laptop. Hotline: 0919 636 399',
         images: [
             {
                 url: 'https://camdocantho.net/og-image.jpg',
@@ -194,7 +194,7 @@ const localBusinessSchema = {
         "https://camdocantho.net/images/about2.jpg",
         "https://camdocantho.net/images/about3.png"
     ],
-    "description": "Cầm đồ uy tín #1 Cần Thơ với 20+ năm kinh nghiệm. Lãi suất từ 1%/tháng, giải ngân nhanh trong 5 phút. Không giữ xe, thủ tục đơn giản.",
+    "description": "Cầm đồ uy tín #1 Cần Thơ với 20+ năm kinh nghiệm. Lãi suất từ 1%/tháng, giải ngân nhanh trong 5 phút. Thủ tục đơn giản.",
 
     // Địa chỉ chi nhánh - PHẢI KHỚP VỚI GOOGLE BUSINESS
     "address": [
