@@ -127,7 +127,7 @@ export const metadata: Metadata = {
         url: 'https://camdocantho.net',
         siteName: 'Cầm Đồ Nhựt Tân Cần Thơ',
         title: 'Cầm Đồ Nhựt Tân - Lãi 1% | 5 Phút Có Tiền | Uy Tín 20+ Năm',
-        description: '⭐ #1 Cần Thơ - Lãi suất chỉ từ 1%/tháng -  Giải ngân 5 phút. Cầm vàng, xe máy, điện thoại, laptop. Hotline: 0919 636 399',
+        description: '⭐ #1 Cần Thơ - Lãi suất chỉ từ 1%/tháng -  Giải ngân 5 phút. Cầm xe máy, điện thoại, laptop. Hotline: 0919 636 399',
         images: [
             {
                 url: 'https://camdocantho.net/og-image.jpg',
@@ -281,14 +281,7 @@ const localBusinessSchema = {
         "@type": "OfferCatalog",
         "name": "Dịch vụ cầm đồ",
         "itemListElement": [
-            {
-                "@type": "Offer",
-                "itemOffered": {
-                    "@type": "Service",
-                    "name": "Cầm vàng",
-                    "description": "Cầm vàng 24K, 18K, 14K, 10K lãi suất từ 1%/tháng, định giá cao theo giá thị trường"
-                }
-            },
+
             {
                 "@type": "Offer",
                 "itemOffered": {
@@ -370,7 +363,7 @@ const faqSchema = {
             "name": "Lãi suất cầm đồ tại Nhựt Tân là bao nhiêu?",
             "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Lãi suất cầm đồ tại Nhựt Tân chỉ từ 1%/tháng, đây là mức lãi suất cạnh tranh nhất tại Cần Thơ. Lãi suất cụ thể: cầm vàng 1%, cầm xe máy (có giữ xe) 1.2%, cầm xe không giữ xe 1.5%, cầm điện thoại/laptop 1.5%. Không có phí ẩn hay phụ phí."
+                "text": "Lãi suất cầm đồ tại Nhựt Tân chỉ từ 1%/tháng, đây là mức lãi suất cạnh tranh nhất tại Cần Thơ. Lãi suất cụ thể: cầm  1%, cầm xe máy (có giữ xe) 1.2%, cầm xe không giữ xe 1.5%, cầm điện thoại/laptop 1.5%. Không có phí ẩn hay phụ phí."
             }
         },
         {
