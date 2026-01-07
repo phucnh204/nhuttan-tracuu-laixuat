@@ -35,7 +35,7 @@ export default function Header() {
             href: "https://camdonhuttan.com/kiem-tra-lai-suat/",
             icon: Search,
         },
-        { name: "Chương trình cuối năm", href: "/chuong-trinh", icon: ClipboardList },
+        { name: "20 năm thành lập", href: "/chuong-trinh", icon: ClipboardList },
         { name: "Ưu đãi sinh viên", href: "/uu-dai-sinh-vien", icon: Cannabis },
     ];
 
