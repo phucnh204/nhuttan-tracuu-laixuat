@@ -14,6 +14,7 @@ import {
     Phone,
     Globe,
     Facebook,
+    Newspaper,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -28,15 +29,17 @@ export default function Header() {
     const router = useRouter();
 
     const navItems = [
-        { name: "Giới thiệu", href: "/gioi-thieu", icon: BookOpenCheck },
-        { name: "Hướng dẫn tra cứu", href: "/tra-cuu", icon: ShieldQuestionMark },
+        { name: "GIỚI THIỆU", href: "/gioi-thieu", icon: BookOpenCheck },
+        { name: "HƯỚNG DẪN TRA CỨU", href: "/tra-cuu", icon: ShieldQuestionMark },
         {
-            name: "Tra cứu lãi suất",
+            name: "TRA CỨU LÃI SUẤT",
             href: "https://camdonhuttan.com/kiem-tra-lai-suat/",
             icon: Search,
         },
-        { name: "20 năm thành lập", href: "/chuong-trinh", icon: ClipboardList },
-        { name: "Ưu đãi sinh viên", href: "/uu-dai-sinh-vien", icon: Cannabis },
+        
+        { name: "ƯU ĐÃI DÀNH CHO SINH VIÊN", href: "/uu-dai-sinh-vien", icon: Cannabis },
+         { name: "IPHONE 18 RA MẮT", href: "/tin-tuc", icon: Newspaper },
+
     ];
 
     useEffect(() => {
@@ -96,7 +99,7 @@ export default function Header() {
                                     href="https://www.facebook.com/camdouytincantho"
                                     target="_blank"
                                 >
-                                    Cầm đồ Nhựt Tân Cần Thơ
+                                    Cầm đồ Nhựt Tân
                                 </a>
                             </div>
                         </div>
