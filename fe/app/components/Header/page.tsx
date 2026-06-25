@@ -156,7 +156,7 @@ export default function Header() {
                             className="hidden   md:inline-flex items-center gap-2 bg-[#F59E0B] hover:bg-[#EA580C] text-white px-6 py-2 rounded-xl font-bold text-sm shadow-lg transition"
                         >
                             <PhoneCall className="w-4 h-4 animate-bounce" />
-                            0346 6363 99 | 0879 3939 55
+                            0346 6363 99 
                         </a>
 
                         {/* Mobile Button */}

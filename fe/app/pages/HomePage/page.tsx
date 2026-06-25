@@ -73,61 +73,114 @@ export default function HomePage() {
 
             {/* Features Section */}
             <div className="container mx-auto px-4 hidden lg:block -mt-20 relative z-20 mb-20">
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-                    {features.map((feature, idx) => (
-                        <div
-                            key={idx}
-                            className="
+  <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+    {features.map((feature, idx) => (
+      <div
+        key={idx}
+        className="
           group
-          bg-white
+          relative
+          overflow-hidden
+          bg-white/90
+          backdrop-blur-sm
           p-8
-          rounded-2xl
-          shadow-lg
-          border border-gray-200
+          rounded-3xl
+          border border-emerald-100
+          shadow-[0_10px_40px_rgba(0,0,0,0.08)]
           transition-all
-          duration-300
-          hover:-translate-y-2
-          hover:shadow-2xl
-          hover:border-[#F59E0B]
+          duration-500
+          hover:-translate-y-3
+          hover:shadow-[0_20px_60px_rgba(15,118,110,0.18)]
+          hover:border-yellow-400
         "
-                        >
-                            {/* Icon */}
-                            <div
-                                className="
-            w-14 h-14
-            flex items-center justify-center
-            rounded-full
-            bg-gradient-to-br from-[#0F766E] to-[#14B8A6]
-            text-white
-            mb-5
-            shadow-md
-            group-hover:scale-110
-            transition-transform
+      >
+        {/* Glow Effect */}
+        <div
+          className="
+            absolute
+            inset-0
+            bg-gradient-to-br
+            from-emerald-500/0
+            via-transparent
+            to-yellow-400/0
+            group-hover:from-emerald-500/5
+            group-hover:to-yellow-400/10
+            transition-all
+            duration-500
           "
-                            >
-                                {feature.icon}
-                            </div>
+        />
 
-                            {/* Title */}
-                            <h3 className="
-          text-xl
-          font-bold
-          mb-2
-          text-[#0F766E]
-          group-hover:text-[#F59E0B]
-          transition-colors
-        ">
-                                {feature.title}
-                            </h3>
+        {/* Icon */}
+        <div
+          className="
+            relative
+            w-16 h-16
+            flex items-center justify-center
+            rounded-2xl
+            bg-gradient-to-br
+            from-emerald-600
+            via-teal-500
+            to-cyan-500
+            text-white
+            shadow-lg
+            mb-6
+            transition-all
+            duration-500
+            group-hover:scale-110
+            group-hover:rotate-6
+          "
+        >
+          {feature.icon}
+        </div>
 
-                            {/* Description */}
-                            <p className="text-gray-600 leading-relaxed">
-                                {feature.desc}
-                            </p>
-                        </div>
-                    ))}
-                </div>
-            </div>
+        {/* Title */}
+        <h3
+          className="
+            relative
+            text-2xl
+            font-bold
+            mb-3
+            text-slate-800
+            transition-all
+            duration-300
+            group-hover:text-emerald-700
+          "
+        >
+          {feature.title}
+        </h3>
+
+        {/* Description */}
+        <p
+          className="
+            relative
+            text-slate-600
+            leading-relaxed
+            text-[15px]
+          "
+        >
+          {feature.desc}
+        </p>
+
+        {/* Bottom Accent */}
+        <div
+          className="
+            absolute
+            bottom-0
+            left-0
+            h-1
+            w-0
+            bg-gradient-to-r
+            from-emerald-500
+            to-yellow-400
+            transition-all
+            duration-500
+            group-hover:w-full
+          "
+        />
+      </div>
+    ))}
+  </div>
+</div>
 
 
             <DinhGia/>

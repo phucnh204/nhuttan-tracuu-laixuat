@@ -4,22 +4,22 @@ const services = [
   {
     name: "Cầm Xe Máy • Ô Tô",
     desc: "Nhận cầm xe máy và ô tô với hạn mức cao, định giá minh bạch, thủ tục đơn giản và giải ngân nhanh chóng trong ngày.",
-    image: "/images/anh-xe-may.png",
+    image: "/images/anh-xe-may(2).png",
   },
   {
     name: "Cầm Điện Thoại • iPad",
     desc: "Hỗ trợ cầm cố các dòng điện thoại, iPhone, Samsung, Xiaomi, Oppo, iPad và thiết bị di động chính hãng với mức định giá cạnh tranh.",
-    image: "/images/anh-dt.png",
+    image: "/images/anh-dt(2).png",
   },
   {
     name: "Cầm Laptop • PC • Smart TV",
     desc: "Nhận cầm MacBook, Laptop Gaming, Laptop Văn Phòng, PC và Smart TV với quy trình chuyên nghiệp, bảo quản an toàn.",
-    image: "/images/anh-laptop3.png",
+    image: "/images/anh-dh(2).png",
   },
   {
     name: "Cầm Máy Ảnh • Smartwatch",
     desc: "Hỗ trợ cầm máy ảnh DSLR, Mirrorless, Apple Watch, đồng hồ thông minh và các thiết bị công nghệ giá trị cao.",
-    image: "/images/anh-dh.png",
+    image: "/images/anh-dh(3).png",
   },
 ];
 
